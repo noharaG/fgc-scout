@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="tokens.css" />
+    <title>FGC Scout</title>
+  </head>
+  <body>
+    <div class="board-head">
+      <h1>ログイン</h1>
+      <p>
+        共有パスワード1つで入る。アカウント登録は持たない。記録者名は初回だけ
+        自由入力させ、端末に保存して以降は聞かない (F1-2)。
+        セッションは大会期間中保持する —— 試合前に毎回入力させると使われなくなる。
+      </p>
+    </div>
+
+    <div class="board">
+      <div class="board-item">
+        <span class="board-caption">初回</span>
+        <div class="device">
+          <div class="shell">
+            <div class="login">
+              <div class="login-brand">FGC Scout</div>
+              <p class="login-note">
+                FIRST Global Challenge 2026 · Team Japan
+              </p>
+              <input type="password" placeholder="共有パスワード" />
+              <input type="text" placeholder="あなたの名前（記録に残ります）" />
+              <button type="button">入る</button>
+              <p class="login-note">
+                この端末に保存して、次回から聞きません
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="board-item">
+        <span class="board-caption">2回目以降（名前は聞かない）</span>
+        <div class="device">
+          <div class="shell">
+            <div class="login">
+              <div class="login-brand">FGC Scout</div>
+              <p class="login-note">たなか として入ります</p>
+              <button type="button">次の試合を見る</button>
+              <p class="login-note">名前を変える</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

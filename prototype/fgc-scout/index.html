@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="tokens.css" />
+    <title>FGC Scout</title>
+  </head>
+  <body>
+    <div class="board-head">
+      <h1>FGC Scout — 視覚の正本</h1>
+      <p>
+        この <code>prototype/fgc-scout/</code> が視覚の正本であり、実装
+        (<code>apps/web</code>) はここから転写する。値を変えるときはここを変え、
+        実装を追随させる。逆をやらない。
+        トークンと共通クラスは <code>tokens.css</code> 1枚にある。
+      </p>
+      <p>
+        数字はすべて方向を見るための架空値。ゲームのルールと得点式は
+        <code>要件定義書.md</code> の2章にある。
+      </p>
+    </div>
+
+    <div class="board">
+      <div class="board-item" style="flex: 1 1 320px; max-width: 760px">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="section-heading" style="margin-top: 0">
+              第1段（本番必須）
+            </h2>
+            <ul class="visit-list">
+              <li class="visit-item">
+                <span class="visit-state">1</span>
+                <span class="visit-text">
+                  <span class="visit-name">
+                    <a href="login.html">ログイン</a>
+                  </span>
+                  <span class="visit-meta">共有パスワード1つ・記録者名は初回だけ</span>
+                </span>
+              </li>
+              <li class="visit-item">
+                <span class="visit-state">2</span>
+                <span class="visit-text">
+                  <span class="visit-name">
+                    <a href="briefing.html">試合前ブリーフィング</a>
+                  </span>
+                  <span class="visit-meta">
+                    第1段の主役。6チームの能力と、この試合の方針
+                  </span>
+                </span>
+              </li>
+              <li class="visit-item">
+                <span class="visit-state">3</span>
+                <span class="visit-text">
+                  <span class="visit-name">
+                    <a href="pit.html">ピット記録</a>
+                  </span>
+                  <span class="visit-meta">
+                    生徒の主な入力作業。訪問優先リストと聞き取り
+                  </span>
+                </span>
+              </li>
+              <li class="visit-item">
+                <span class="visit-state">4</span>
+                <span class="visit-text">
+                  <span class="visit-name">
+                    <a href="matches.html">試合一覧</a>
+                  </span>
+                  <span class="visit-meta">Japan の試合だけ色を変える</span>
+                </span>
+              </li>
+              <li class="visit-item">
+                <span class="visit-state">5</span>
+                <span class="visit-text">
+                  <span class="visit-name">
+                    <a href="teams.html">チーム一覧</a>
+                  </span>
+                  <span class="visit-meta">
+                    公式の順位表＋推定した貢献＋ピット記録の有無
+                  </span>
+                </span>
+              </li>
+              <li class="visit-item">
+                <span class="visit-state">6</span>
+                <span class="visit-text">
+                  <span class="visit-name">
+                    <a href="team-detail.html">チーム詳細</a>
+                  </span>
+                  <span class="visit-meta">
+                    公式 / 推定 / 申告の3種を混ぜずに並べる
+                  </span>
+                </span>
+              </li>
+              <li class="visit-item">
+                <span class="visit-state">7</span>
+                <span class="visit-text">
+                  <span class="visit-name">
+                    <a href="admin-questions.html">質問の管理</a>
+                  </span>
+                  <span class="visit-meta">
+                    管理者だけ。聞き取り項目を後から変える
+                  </span>
+                </span>
+              </li>
+            </ul>
+
+            <h2 class="section-heading">第3段（人手が回る場合だけ）</h2>
+            <ul class="visit-list">
+              <li class="visit-item" data-done>
+                <span class="visit-state">済</span>
+                <span class="visit-text">
+                  <span class="visit-name">
+                    <a href="record.html">試合中の記録</a>
+                  </span>
+                  <span class="visit-meta">
+                    正本は作ってある。人手が確保できた時点で実装だけ足せる
+                  </span>
+                </span>
+              </li>
+            </ul>
+
+            <h2 class="section-heading">未着手</h2>
+            <p class="section-heading-note">
+              プレーオフ支援（第2段）。上位24位に入った場合、
+              4チームから3台を選ぶ組み合わせを比較する
+            </p>
+
+            <div class="confidence">
+              <strong>この正本で決めていること</strong><br />
+              ブランドは炎のオレンジ
+              <code>#c2410c</code>。赤と青はアライアンス色に予約しているので
+              ブランドに使わない。<br />
+              文字3段・順位3段・アライアンス2色すべて白地または白文字で
+              4.5:1 以上を実測済み。<br />
+              暗色配色は作らない。基準は 14.5px / 500 / 1.6。<br />
+              記録画面の主ボタン 88px と副 56px は、規約 D-39 の 40/36/32 の
+              上に足した段（承認済みの例外に登録が必要）。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

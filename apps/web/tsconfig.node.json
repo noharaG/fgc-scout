@@ -1,0 +1,9 @@
+{
+  // ビルド設定だけが Node で動く。@types/node はここでだけ有効にする。
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["es2023"],
+    "types": ["node"]
+  },
+  "include": ["vite.config.ts"]
+}

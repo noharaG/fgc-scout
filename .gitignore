@@ -1,0 +1,14 @@
+node_modules/
+dist/
+
+# 実行時の秘密。テンプレート(.dev.vars.example)だけを追跡する(→ A-34)
+.dev.vars
+.env
+
+# ローカルランタイムの作業領域
+.wrangler/
+
+# ブラウザテストの出力
+test-results/
+playwright-report/
+

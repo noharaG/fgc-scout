@@ -1,0 +1,16 @@
+{
+  // ブラウザで動く側。base を extends し、環境差だけを足す(→ S-23)。
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["es2023", "dom", "dom.iterable"],
+    "jsx": "react-jsx",
+    // CSS の副作用 import と import.meta.env の型は vite/client が持つ。
+    "types": ["vite/client"],
+    // src の外にあるものにはエイリアスが届かないので相対パスで参照する。
+    // ディレクトリを跨ぐ import だけがエイリアスを使う(→ S-36)。
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}

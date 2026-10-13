@@ -1,0 +1,276 @@
+@import "tailwindcss";
+
+/* Section order (each appears once; append within its section):
+ * 1. tokens: @theme static inline -> plain :root
+ * 2. @layer base
+ * 3. @layer components
+ * 4. unlayered mechanisms: focus
+ * 5. @media screen (widest first)
+ * 6. @container
+ *
+ * 視覚の正本は prototype/fgc-scout/tokens.css。値を変えるときは正本を
+ * 変えてからここへ転写する。逆をやらない。
+ *
+ * 互換層は作らない。UI キットを持ち込んでいないので受け皿が要らない。
+ * 暗色配色も作らない。2組のパレットは、片方だけを直す逸脱がレビューを
+ * すり抜ける形で増える。
+ */
+
+/* ---------- 1. tokens ---------- */
+
+@theme static inline {
+  /* ブランド。2026 Igniting Innovation の炎と WILDFIRE のボール色に由来する。
+     赤と青はアライアンス色に予約しているため、ブランドには使わない。
+     混ざると試合表示でどちらのアライアンスか読めなくなる。 */
+  --color-brand: #c2410c; /* 白文字 5.18:1 */
+  --color-brand-hover: #9a3412; /* 白文字 7.31:1 */
+  --color-brand-surface: #fff5ed;
+
+  /* 文字3段。3段すべて白地で 4.5:1 以上(実測値をコメントに残す)。
+     最も薄い段は白地専用で、淡い面の上には載せない。 */
+  --color-ink: #1c1917; /* 17.49:1 */
+  --color-secondary-ink: #57534e; /* 7.63:1 */
+  --color-muted-ink: #78716c; /* 4.80:1 */
+
+  /* 線は太さを問わず1色。面は白・中立の淡い面・ブランド寄りの淡い面の3種。 */
+  --color-line: #e7e5e4;
+  --color-surface-soft: #fafaf9;
+
+  /* 順位の3段軸。赤はアライアンス色なので使わない。
+     3段のコントラストを揃えてある(5.02 / 5.02 / 4.80)。 */
+  --color-rank-high: #15803d;
+  --color-rank-mid: #b45309;
+  --color-rank-low: var(--color-muted-ink);
+
+  /* アライアンス色。ルール由来の固定値であり、ブランドの変更に追随させない。
+     輝度が近く色覚多様性では区別できないため、色だけで示さず必ずラベルを
+     添える。 */
+  --color-alliance-red: #dc2626; /* 白文字 4.83:1 */
+  --color-alliance-blue: #2563eb; /* 白文字 5.17:1 */
+
+  --color-error: #b91c1c; /* 白文字 6.47:1 */
+
+  /* 角丸は役割名だけで持つ。値の階調を名前の数値に持たせない。 */
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-tag: 6px;
+
+  /* 影の色は --color-ink の RGB から作る。 */
+  --shadow-card: 0 4px 18px rgb(28 25 23 / 7%);
+  --shadow-popover: 0 10px 30px rgb(28 25 23 / 18%);
+
+  /* 見出しはサイズと行間を対で持つ。使う側が行間を書き忘れないため。
+     このトークンは画面のコードから直接使わず、役の名前を持つクラス経由で
+     のみ使う。 */
+  --text-section: 17.5px;
+  --text-section--line-height: 28px;
+  --text-card-title: 16.5px;
+  --text-card-title--line-height: 26px;
+}
+
+:root {
+  /* ユーティリティ名前空間を持たない族。 */
+  --layer-drawer: 40;
+  --layer-dialog: 50;
+  --layer-toast: 60;
+
+  /* 現場操作の高さ2段。規約 D-39 の 40/36/32 の上に足したもので、
+     試合中に走りながら片手でタップする操作のための段(承認済みの例外)。
+     閲覧画面の操作要素は 40/36/32 のユーティリティを使う。 */
+  --control-field: 88px;
+  --control-field-sub: 56px;
+}
+
+/* ---------- 2. base ---------- */
+
+@layer base {
+  body {
+    /* 基準は4宣言だけ。あとは継承させる。14.5px は和文の業務密度に
+       合わせた値で、記録画面のボタンと数値はこの基準からの差分として
+       階段の上段を使う。 */
+    font-family: "Noto Sans JP", "Noto Sans CJK JP", sans-serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1.6;
+
+    @apply bg-surface-soft text-ink;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    /* この4要素だけは UA 既定のフォントを持ち、body から継承しない。 */
+    font: inherit;
+  }
+}
+
+/* ---------- 3. components ---------- */
+
+@layer components {
+  /* 2つ以上の画面で再利用するものだけをここに置く。1画面に閉じた見た目は
+     その画面のモジュール先頭の定数にする。 */
+
+  .ui-section-heading {
+    @apply text-section font-extrabold;
+  }
+
+  .ui-card-title {
+    @apply text-card-title font-extrabold;
+  }
+
+  /* 数字の隣に出典を添えるための札。公式の実測・推定・ピットでの申告を
+     混ぜないための機構であり、装飾ではない。 */
+  /**
+   * 国旗の絵文字。**本文のフォントより先に絵文字のフォントを引く。**
+   * `Noto Color Emoji` は旗が出ない環境でだけ後から足す
+   * (→ team/flag-font.ts)。足さない環境では手元の絵文字フォントが当たる。
+   */
+  .ui-flag {
+    font-family:
+      "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  }
+
+  .ui-source-tag {
+    @apply rounded-tag px-[5px] py-px text-[10px] font-bold;
+  }
+
+  .ui-source-tag[data-source="official"] {
+    @apply bg-rank-high text-white;
+  }
+
+  .ui-source-tag[data-source="estimate"] {
+    @apply border border-line bg-surface-soft text-secondary-ink;
+  }
+
+  .ui-source-tag[data-source="declared"] {
+    @apply border border-brand bg-brand-surface text-brand-hover;
+  }
+
+  /* 択一の選択。押されている状態は属性で持ち、クラスの足し引きで表さない。
+     同じプロパティのユーティリティを条件で足すと、どちらが勝つかは書いた順
+     ではなく生成順で決まる。生成順では bg-white と text-white が最後に来る
+     ため、選択中の指定が全部負けて白地に白文字になり、ラベルが消える。
+     属性セレクタなら詳細度で必ず勝つ。視覚の正本も同じ書き方をしている
+     (prototype/fgc-scout/tokens.css の .segment button[aria-pressed])。 */
+  .ui-segment {
+    @apply min-w-0 flex-1 rounded-control border-[1.5px] border-line bg-white
+      text-[15px] font-bold text-secondary-ink;
+  }
+
+  .ui-segment[aria-pressed="true"] {
+    @apply border-brand bg-brand text-white;
+  }
+
+  /* 画面骨格。広幅の姿を既定にし、狭幅のブロックだけが上書きする。
+     既定を広幅側に置くと、段を足しても広幅の姿が壊れない。 */
+
+  .app-shell {
+    @apply flex h-svh overflow-hidden;
+  }
+
+  .app-sidebar {
+    @apply flex w-[220px] shrink-0 flex-col gap-0.5 border-r border-line
+      bg-surface-soft p-3;
+  }
+
+  .app-tabs {
+    /* 狭幅でだけ現れる。既定は広幅の姿なので隠しておく。 */
+    display: none;
+  }
+
+  .app-main {
+    @apply min-h-0 min-w-0 flex-1 overflow-y-auto;
+    scrollbar-gutter: stable;
+  }
+
+  .app-nav-link {
+    @apply flex h-[46px] items-center rounded-control px-3 text-sm font-bold
+      text-secondary-ink no-underline;
+  }
+
+  .app-nav-link[data-active] {
+    @apply bg-brand text-white;
+  }
+}
+
+/* ---------- 4. unlayered mechanisms ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* ---------- 5. screen width steps (widest first) ---------- */
+
+/* 第1段の導出: サイドバー 220px ＋ 本文の最小可読幅 548px
+   （チームカード 268px × 2 ＋ gap 12px）＋ 本文の左右余白 32px = 800px。
+   その下限を上回る切りのよい値として 900px を採る。
+   段は max-width だけで書き、min-width のメディアクエリを書かない。 */
+@media screen and (max-width: 900px) {
+  /* 骨格が畳まれる段。サイドバーを下部タブへ替える。
+     ナビの内容は分岐させず、表示手段だけを切り替える。 */
+  .app-shell {
+    flex-direction: column;
+  }
+
+  .app-sidebar {
+    display: none;
+  }
+
+  .app-tabs {
+    display: flex;
+    border-top: 1px solid var(--color-line);
+    background: white;
+  }
+
+  .app-tabs .app-nav-link {
+    flex: 1;
+    min-width: 0;
+    height: 60px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    border-radius: 0;
+    border-top: 3px solid transparent;
+    font-size: 12px;
+    padding: 0 4px;
+  }
+
+  .app-tabs .app-nav-link[data-active] {
+    color: var(--color-brand-hover);
+    background: white;
+    border-top-color: var(--color-brand);
+  }
+}
+
+/* ---------- 6. container steps ---------- */
+
+/* チーム一覧。**広い枠では表、狭い枠ではカード。**同じ一覧を2つの形で
+   描き、どちらを見せるかは CSS だけで選ぶ(→ D-53)。幅はビューポートでは
+   なく一覧自身の幅で判定する。サイドバーの有無で中身の幅が変わるため
+   (→ D-48)。既定は広い枠の姿で、狭い枠だけが上書きする(→ D-50)。
+
+   段の導出: 表で横に振らずに見せたい要の列は 順位 56 ＋ チーム 200 ＋
+   公式4列 64 × 4 ＋ 記録 110 = 622px。それを上回る切りのよい値として
+   640px を採る。スマホの縦（枠 358px）はカード、横（枠 800px 前後）と
+   タブレット・PC は表になる。申告の列は表の枠の中で横に送る(→ D-46)。 */
+@media screen {
+  .teams-board {
+    container: teams / inline-size;
+  }
+
+  .teams-cards {
+    display: none;
+  }
+
+  @container teams (max-width: 640px) {
+    .teams-table-wrap {
+      display: none;
+    }
+
+    .teams-cards {
+      display: flex;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+# 実行時に注入するサーバ秘密のテンプレート。このファイルは追跡し、
+# 値を入れた .dev.vars は追跡しない。本番は `wrangler secret put` で入れる。
+#
+# 値の生成: pnpm -C apps/api run hash-password -- "<パスワード>"
+# 読み出し側: src/env.ts の AppEnv と、src/index.ts の POST /api/session
+#
+# 秘密の値はプレースホルダのままにしてある。コピーしただけで起動すると
+# 「未設定」として同じ形で失敗する。
+
+# 生徒に配る共有パスワードのハッシュ。viewer 権限で入る。
+# 形式は pbkdf2-sha256$<反復回数>$<salt>$<hash>。
+VIEWER_PASSWORD_HASH="replace-with-viewer-password-hash"
+
+# コーチ用の管理者パスワードのハッシュ。質問項目の変更にはこちらが要る。
+# 生徒用と同じ値にしない。同じにすると全員が聞き取り項目を書き換えられる。
+ADMIN_PASSWORD_HASH="replace-with-admin-password-hash"
+
+# セッション Cookie の署名鍵。32バイト以上のランダム文字列にする。
+# 生成例: node -e "console.log(crypto.randomUUID()+crypto.randomUUID())"
+# 変えると全員がログアウトするので、大会期間中は変えない。
+SESSION_SECRET="replace-with-32-plus-random-bytes"

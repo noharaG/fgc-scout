@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="tokens.css" />
+    <title>FGC Scout</title>
+  </head>
+  <body>
+    <div class="board-head">
+      <h1>試合前ブリーフィング</h1>
+      <p>
+        第1段の主役。試合前に数十秒で読む。人力記録が無いので、
+        中身は公式データと、そこから推定した値だけで組んでいる。
+        <strong>公式の実測か推定かを数字の隣で区別する</strong>のが要件
+        (F4-2b)。数字は方向を見るための架空値。
+      </p>
+    </div>
+
+    <div class="board">
+      <div class="board-item">
+        <span class="board-caption">スマホ（会場で読む）</span>
+        <div class="device">
+          <div class="shell">
+            <header class="app-head">
+              <span class="app-head-title">次の試合</span>
+              <button type="button" class="app-head-menu" aria-label="メニュー">
+                ≡
+              </button>
+            </header>
+
+            <div class="shell-body">
+              <div class="main">
+                <div class="match-hero">
+                  <span class="match-hero-no">Q31</span>
+                  <span class="match-hero-meta">10:42 · Field 2 · 赤</span>
+                </div>
+
+                <div class="predict">
+                  <div class="predict-side" data-alliance="red">
+                    <div class="predict-side-label">
+                      <span class="alliance-tag" data-alliance="red">赤</span>
+                      自分たち
+                    </div>
+                    <div>
+                      <span class="predict-side-value">251</span>
+                      <span class="predict-side-unit">点</span>
+                    </div>
+                    <ul class="predict-breakdown">
+                      <li><span>抑制 96 × 乗数 1.6</span><span>154</span></li>
+                      <li><span>パートナー</span><span>25</span></li>
+                      <li><span>消火器（共通）</span><span>62</span></li>
+                      <li><span>協調ボーナス（共通）</span><span>10</span></li>
+                    </ul>
+                  </div>
+                  <div class="predict-side" data-alliance="blue">
+                    <div class="predict-side-label">
+                      <span class="alliance-tag" data-alliance="blue">青</span>
+                      相手
+                    </div>
+                    <div>
+                      <span class="predict-side-value">204</span>
+                      <span class="predict-side-unit">点</span>
+                    </div>
+                    <ul class="predict-breakdown">
+                      <li><span>抑制 88 × 乗数 1.5</span><span>132</span></li>
+                      <li><span>パートナー</span><span>0</span></li>
+                      <li><span>消火器（共通）</span><span>62</span></li>
+                      <li><span>協調ボーナス（共通）</span><span>10</span></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <h2 class="section-heading">味方</h2>
+                <div class="team-grid">
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="red">赤</span>
+                        <span class="team-card-name">Japan</span>
+                        <span class="team-card-rank">12位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制ユニットへの貢献</span>
+                        <span>
+                          <span class="metric-value">38</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定</span
+                          >
+                        </span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span>
+                          <span class="metric-value">4/7</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          >
+                        </span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">Climb Points</span>
+                        <span>
+                          <span class="metric-value">1.85</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          >
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="red">赤</span>
+                        <span class="team-card-name">Kenya</span>
+                        <span class="team-card-rank">24位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制ユニットへの貢献</span>
+                        <span>
+                          <span class="metric-value">31</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定</span
+                          >
+                        </span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span>
+                          <span class="metric-value">1/7</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          >
+                        </span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">Climb Points</span>
+                        <span>
+                          <span class="metric-value">1.20</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          >
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="red">赤</span>
+                        <span class="team-card-name">Peru</span>
+                        <span class="team-card-rank">61位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制ユニットへの貢献</span>
+                        <span>
+                          <span class="metric-value">27</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定 1試合</span
+                          >
+                        </span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span>
+                          <span class="metric-value">0/1</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          >
+                        </span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">Climb Points</span>
+                        <span>
+                          <span class="metric-value">1.10</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          >
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h2 class="section-heading">相手</h2>
+                <p class="section-heading-note">
+                  消火器と協調ボーナスは6チーム全員に入る。相手の力も自分の点になる
+                </p>
+                <div class="team-grid">
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="blue"
+                          >青</span
+                        >
+                        <span class="team-card-name">Poland</span>
+                        <span class="team-card-rank">5位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制ユニットへの貢献</span>
+                        <span>
+                          <span class="metric-value">41</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定</span
+                          >
+                        </span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span>
+                          <span class="metric-value">6/7</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          >
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="blue"
+                          >青</span
+                        >
+                        <span class="team-card-name">Egypt</span>
+                        <span class="team-card-rank">33位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制ユニットへの貢献</span>
+                        <span>
+                          <span class="metric-value">29</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定</span
+                          >
+                        </span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span>
+                          <span class="metric-value">3/7</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          >
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="blue"
+                          >青</span
+                        >
+                        <span class="team-card-name">Nepal</span>
+                        <span class="team-card-rank">88位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制ユニットへの貢献</span>
+                        <span>
+                          <span class="metric-value">18</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定</span
+                          >
+                        </span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span>
+                          <span class="metric-value">0/6</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          >
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h2 class="section-heading">この試合の方針</h2>
+                <ul class="plan">
+                  <li>
+                    <div class="plan-title">
+                      協調ボーナスを取りに行く<span class="plan-points"
+                        >+40点（全員）</span
+                      >
+                    </div>
+                    <p class="plan-why">
+                      6台のうち4台に ZONE 3 の実績がある。Peru と Nepal
+                      が乗れれば 6台で40点。試合前に相手にも伝える必要がある
+                    </p>
+                  </li>
+                  <li>
+                    <div class="plan-title">
+                      消火器に寄せる<span class="plan-points"
+                        >自分の順位が上がる</span
+                      >
+                    </div>
+                    <p class="plan-why">
+                      順位は平均スコアで決まり、勝敗は関係ない。消火器の点は
+                      6チーム全員に入るので、入れるほど自分の順位も上がる
+                    </p>
+                  </li>
+                  <li>
+                    <div class="plan-title">
+                      抑制を積んでから登る<span class="plan-points"
+                        >ZONE3 = +29点相当</span
+                      >
+                    </div>
+                    <p class="plan-why">
+                      クライムは加点ではなく乗数。赤の抑制が予測96点なら ZONE
+                      3 の +0.30 は29点分。抑制が少ないとクライムの価値も下がる
+                    </p>
+                  </li>
+                  <li>
+                    <div class="plan-title">相手の妨害はしない</div>
+                    <p class="plan-why">
+                      相手の抑制を削っても自分の抑制も乗数も変わらない。順位は
+                      1点も上がらず、G01 で反則になる
+                    </p>
+                  </li>
+                </ul>
+
+                <div class="confidence">
+                  <strong>推定の確度</strong><br />
+                  Japan・Poland は7試合、Peru は<strong>1試合</strong>のみ。Peru
+                  の貢献は幅が大きい。<br />
+                  各ロボットのクライム結果が公式データに含まれない場合、抑制点と乗数を分離できない。その場合はこの表から乗数の行が消える。
+                </div>
+
+                <p class="stale-note">公式データ 2分前に取得</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="board-item">
+        <span class="board-caption">
+          PC（同じ内容が広い幅で3列に折り返る。メディアクエリは使わず、カード自身の最小幅で折り返す）
+        </span>
+        <div class="desktop">
+          <nav class="nav">
+            <div class="nav-brand">FGC Scout</div>
+            <a href="briefing.html" aria-current="page">次の試合</a>
+            <a href="matches.html">試合一覧</a>
+            <a href="teams.html">チーム</a>
+            <a href="playoff.html">プレーオフ</a>
+            <a href="pit.html">ピット記録</a>
+          </nav>
+          <div class="shell">
+            <header class="app-head">
+              <span class="app-head-title">次の試合 — Q31</span>
+              <span class="record-head-scout">公式データ 2分前に取得</span>
+            </header>
+            <div class="shell-body">
+              <div class="main">
+                <div class="match-hero">
+                  <span class="match-hero-no">Q31</span>
+                  <span class="match-hero-meta">10:42 · Field 2 · 赤</span>
+                </div>
+
+                <div class="predict">
+                  <div class="predict-side" data-alliance="red">
+                    <div class="predict-side-label">
+                      <span class="alliance-tag" data-alliance="red">赤</span>
+                      自分たち
+                    </div>
+                    <div>
+                      <span class="predict-side-value">251</span>
+                      <span class="predict-side-unit">点</span>
+                    </div>
+                    <ul class="predict-breakdown">
+                      <li><span>抑制 96 × 乗数 1.6</span><span>154</span></li>
+                      <li><span>パートナー</span><span>25</span></li>
+                      <li><span>消火器（共通）</span><span>62</span></li>
+                      <li><span>協調ボーナス（共通）</span><span>10</span></li>
+                    </ul>
+                  </div>
+                  <div class="predict-side" data-alliance="blue">
+                    <div class="predict-side-label">
+                      <span class="alliance-tag" data-alliance="blue">青</span>
+                      相手
+                    </div>
+                    <div>
+                      <span class="predict-side-value">204</span>
+                      <span class="predict-side-unit">点</span>
+                    </div>
+                    <ul class="predict-breakdown">
+                      <li><span>抑制 88 × 乗数 1.5</span><span>132</span></li>
+                      <li><span>パートナー</span><span>0</span></li>
+                      <li><span>消火器（共通）</span><span>62</span></li>
+                      <li><span>協調ボーナス（共通）</span><span>10</span></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <h2 class="section-heading">6チーム</h2>
+                <div class="team-grid">
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="red">赤</span>
+                        <span class="team-card-name">Japan</span>
+                        <span class="rank-mark" data-rank="high">上位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制への貢献</span>
+                        <span
+                          ><span class="metric-value">38</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定</span
+                          ></span
+                        >
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span
+                          ><span class="metric-value">4/7</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          ></span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="red">赤</span>
+                        <span class="team-card-name">Kenya</span>
+                        <span class="rank-mark" data-rank="mid">中位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制への貢献</span>
+                        <span
+                          ><span class="metric-value">31</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定</span
+                          ></span
+                        >
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span
+                          ><span class="metric-value">1/7</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          ></span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="red">赤</span>
+                        <span class="team-card-name">Peru</span>
+                        <span class="rank-mark" data-rank="low">下位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制への貢献</span>
+                        <span
+                          ><span class="metric-value">27</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定 1試合</span
+                          ></span
+                        >
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span
+                          ><span class="metric-value">0/1</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          ></span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="blue"
+                          >青</span
+                        >
+                        <span class="team-card-name">Poland</span>
+                        <span class="rank-mark" data-rank="high">上位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制への貢献</span>
+                        <span
+                          ><span class="metric-value">41</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定</span
+                          ></span
+                        >
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span
+                          ><span class="metric-value">6/7</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          ></span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="blue"
+                          >青</span
+                        >
+                        <span class="team-card-name">Egypt</span>
+                        <span class="rank-mark" data-rank="mid">中位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制への貢献</span>
+                        <span
+                          ><span class="metric-value">29</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定</span
+                          ></span
+                        >
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span
+                          ><span class="metric-value">3/7</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          ></span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card team-card">
+                    <div class="card-body">
+                      <div class="team-card-head">
+                        <span class="alliance-tag" data-alliance="blue"
+                          >青</span
+                        >
+                        <span class="team-card-name">Nepal</span>
+                        <span class="rank-mark" data-rank="low">下位</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">抑制への貢献</span>
+                        <span
+                          ><span class="metric-value">18</span>
+                          <span class="metric-tag" data-source="estimate"
+                            >推定</span
+                          ></span
+                        >
+                      </div>
+                      <div class="metric">
+                        <span class="metric-label">ZONE 3 到達</span>
+                        <span
+                          ><span class="metric-value">0/6</span>
+                          <span class="metric-tag" data-source="official"
+                            >公式</span
+                          ></span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h2 class="section-heading">この試合の方針</h2>
+                <ul class="plan">
+                  <li>
+                    <div class="plan-title">
+                      協調ボーナスを取りに行く<span class="plan-points"
+                        >+40点（全員）</span
+                      >
+                    </div>
+                    <p class="plan-why">
+                      6台のうち4台に ZONE 3 の実績がある。Peru と Nepal
+                      が乗れれば 6台で40点。試合前に相手にも伝える必要がある
+                    </p>
+                  </li>
+                  <li>
+                    <div class="plan-title">
+                      消火器に寄せる<span class="plan-points"
+                        >自分の順位が上がる</span
+                      >
+                    </div>
+                    <p class="plan-why">
+                      順位は平均スコアで決まり、勝敗は関係ない。消火器の点は
+                      6チーム全員に入る
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

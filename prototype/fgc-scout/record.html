@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="tokens.css" />
+    <title>FGC Scout</title>
+  </head>
+  <body>
+    <div class="board-head">
+      <h1>記録画面（スマホ）</h1>
+      <p>
+        1台につき1人が記録する。項目は13個あるが、1画面のボタンを6個以内に
+        保つため3ページに割った。ページの切り替えは下端のタブで行い、
+        試合の進行に合わせて手で移る。
+      </p>
+    </div>
+
+    <div class="board">
+      <!-- ページ1: サイクル -->
+      <div class="board-item">
+        <span class="board-caption">1. サイクル（序盤〜中盤ずっと使う）</span>
+        <div class="device">
+          <div class="shell">
+            <header class="record-head">
+              <span class="record-head-match">Q12</span>
+              <span class="record-head-team">
+                <span class="alliance-tag" data-alliance="red">赤</span>
+                <span class="record-head-team-name">Japan</span>
+              </span>
+              <span class="record-head-scout">たなか</span>
+            </header>
+
+            <div class="shell-body">
+              <div class="route-toggle">
+                <button type="button" aria-pressed="true">直接入れる</button>
+                <button type="button" aria-pressed="false">
+                  シールド経由
+                </button>
+              </div>
+
+              <div class="field-buttons">
+                <button type="button" class="field-button">
+                  <span class="field-button-label">少</span>
+                  <span class="field-button-hint">〜5個</span>
+                  <span class="field-button-count">3</span>
+                </button>
+                <button type="button" class="field-button">
+                  <span class="field-button-label">中</span>
+                  <span class="field-button-hint">6〜15個</span>
+                  <span class="field-button-count">8</span>
+                </button>
+                <button type="button" class="field-button">
+                  <span class="field-button-label">多</span>
+                  <span class="field-button-hint">16個〜</span>
+                  <span class="field-button-count">1</span>
+                </button>
+              </div>
+
+              <div class="field-sub">
+                <button type="button">消火器へ +1</button>
+                <button type="button" class="is-undo">取り消し</button>
+              </div>
+
+              <div class="tally">
+                <div class="tally-row">
+                  <span class="tally-label">サイクル</span>
+                  <span
+                    ><span class="tally-value">12</span>
+                    <span class="tally-unit">回</span></span
+                  >
+                </div>
+                <div class="tally-row">
+                  <span class="tally-label">抑制ユニット 推定</span>
+                  <span
+                    ><span class="tally-value">101</span>
+                    <span class="tally-unit">個</span></span
+                  >
+                </div>
+                <div class="tally-row">
+                  <span class="tally-label">消火器（6チーム共通の点）</span>
+                  <span
+                    ><span class="tally-value">4</span>
+                    <span class="tally-unit">回</span></span
+                  >
+                </div>
+                <p class="tally-note">
+                  少3・中10・多20 で概算。目安の個数は練習試合で較正する
+                </p>
+              </div>
+
+              <div class="recent">
+                <p class="recent-title">直近の記録</p>
+                <ul class="recent-list">
+                  <li><span>中 · 直接</span><span class="recent-time">1:12</span></li>
+                  <li><span>消火器</span><span class="recent-time">1:26</span></li>
+                  <li><span>中 · 直接</span><span class="recent-time">1:44</span></li>
+                  <li><span>少 · シールド</span><span class="recent-time">2:03</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <nav class="page-tabs">
+              <button type="button" aria-current="page">
+                サイクル<span class="page-tabs-badge">12回</span>
+              </button>
+              <button type="button">
+                クライム<span class="page-tabs-badge">途中</span>
+              </button>
+              <button type="button">締め</button>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- ページ2: クライム -->
+      <div class="board-item">
+        <span class="board-caption">2. クライム（終盤35秒だけ使う）</span>
+        <div class="device">
+          <div class="shell">
+            <header class="record-head">
+              <span class="record-head-match">Q12</span>
+              <span class="record-head-team">
+                <span class="alliance-tag" data-alliance="red">赤</span>
+                <span class="record-head-team-name">Japan</span>
+              </span>
+              <span class="record-head-scout">たなか</span>
+            </header>
+
+            <div class="shell-body">
+              <div class="step-list">
+                <button type="button" class="step-button" data-done>
+                  <span class="step-index">1</span>
+                  <span class="step-label">ブレースへ動き出した</span>
+                  <span class="step-time">0:41</span>
+                </button>
+                <button type="button" class="step-button" data-done>
+                  <span class="step-index">2</span>
+                  <span class="step-label">掛かった</span>
+                  <span class="step-time">0:33</span>
+                </button>
+                <button type="button" class="step-button">
+                  <span class="step-index">3</span>
+                  <span class="step-label">登り切った</span>
+                  <span class="step-time"></span>
+                </button>
+              </div>
+
+              <div class="retry-row">
+                <div class="retry-row-text">
+                  <div class="retry-row-label">落ちた（ZONE 1 からやり直し）</div>
+                  <div class="retry-row-note">
+                    G15: 床に触れたら ZONE 1 から登り直さないと乗数が付かない
+                  </div>
+                </div>
+                <span class="retry-count">1</span>
+                <button type="button">+1</button>
+              </div>
+
+              <div class="field-section">
+                <div class="field-section-title">到達 ZONE</div>
+                <div class="field-section-note">
+                  乗数 接触 +0.05 / 1 +0.10 / 2 +0.20 / 3 +0.30
+                </div>
+                <div class="segment">
+                  <button type="button" aria-pressed="false">接触</button>
+                  <button type="button" aria-pressed="false">1</button>
+                  <button type="button" aria-pressed="true">2</button>
+                  <button type="button" aria-pressed="false">3</button>
+                </div>
+              </div>
+
+              <div class="field-section">
+                <div class="field-section-title">終了5秒後に保持できたか</div>
+                <div class="field-section-note">
+                  G21: 判定は試合終了後5秒の静止状態。落ちれば0点
+                </div>
+                <div class="segment">
+                  <button type="button" aria-pressed="true">保持した</button>
+                  <button type="button" aria-pressed="false">落ちた</button>
+                </div>
+              </div>
+
+              <div class="field-section">
+                <div class="field-section-title">パートナークライム</div>
+                <div class="field-section-note">
+                  支えられたロボット1台につき 25点
+                </div>
+                <div class="segment">
+                  <button type="button" aria-pressed="false">支えた</button>
+                  <button type="button" aria-pressed="false">支えられた</button>
+                  <button type="button" aria-pressed="true">なし</button>
+                </div>
+              </div>
+            </div>
+
+            <nav class="page-tabs">
+              <button type="button">
+                サイクル<span class="page-tabs-badge">12回</span>
+              </button>
+              <button type="button" aria-current="page">
+                クライム<span class="page-tabs-badge">途中</span>
+              </button>
+              <button type="button">締め</button>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- ページ3: 締め -->
+      <div class="board-item">
+        <span class="board-caption">3. 締め（試合後に1回）</span>
+        <div class="device">
+          <div class="shell">
+            <header class="record-head">
+              <span class="record-head-match">Q12</span>
+              <span class="record-head-team">
+                <span class="alliance-tag" data-alliance="red">赤</span>
+                <span class="record-head-team-name">Japan</span>
+              </span>
+              <span class="record-head-scout">たなか</span>
+            </header>
+
+            <div class="shell-body">
+              <div class="field-section">
+                <div class="field-section-title">異常</div>
+                <div class="field-section-note">
+                  同時に起きうるので複数選べる
+                </div>
+                <div class="toggle-list">
+                  <button type="button" aria-pressed="false">
+                    <span class="toggle-mark">□</span>動かなかった
+                  </button>
+                  <button type="button" aria-pressed="true">
+                    <span class="toggle-mark">■</span>接続が切れた
+                  </button>
+                  <button type="button" aria-pressed="false">
+                    <span class="toggle-mark">□</span>転倒した
+                  </button>
+                </div>
+              </div>
+
+              <div class="field-section">
+                <div class="field-section-title">カード</div>
+                <div class="field-section-note">
+                  反則は減点ではなく相手アライアンスへの加点になる
+                </div>
+                <div class="segment is-wrap">
+                  <button type="button" aria-pressed="true">なし</button>
+                  <button type="button" aria-pressed="false">White</button>
+                  <button type="button" aria-pressed="false">Yellow</button>
+                  <button type="button" aria-pressed="false">Y+Minor</button>
+                  <button type="button" aria-pressed="false">Y+Major</button>
+                  <button type="button" aria-pressed="false">Red</button>
+                </div>
+              </div>
+
+              <div class="field-section">
+                <div class="field-section-title">メモ</div>
+                <textarea
+                  class="memo"
+                  placeholder="数値にならないこと（狙いが安定しない、シールド前で詰まる など）"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="save-bar">
+              <button type="button">保存する</button>
+              <p class="sync-note">
+                端末に保存 → 送信待ち 2件（圏内に戻ると自動で送る）
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

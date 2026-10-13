@@ -1,0 +1,9 @@
+{
+  // ルートは extends と、ルート直下の設定ファイルだけを見る include を持つ(→ S-23)。
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["es2023"],
+    "types": []
+  },
+  "include": ["vite.config.ts"]
+}

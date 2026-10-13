@@ -1,0 +1,25 @@
+{
+  "name": "fgc-scouting",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "build": "vp build",
+    "lint": "vp lint",
+    "format": "vp fmt",
+    "format:check": "vp fmt --check",
+    "test": "vp run -r --cache test",
+    "typecheck": "vp run -r --cache typecheck",
+    "check": "vp check",
+    "knip": "vp exec knip"
+  },
+  "devDependencies": {
+    "knip": "catalog:",
+    "typescript": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@12.3.4"
+}

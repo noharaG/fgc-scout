@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="tokens.css" />
+    <title>FGC Scout</title>
+  </head>
+  <body>
+    <div class="board-head">
+      <h1>チーム一覧</h1>
+      <p>
+        190チーム。公式の順位表に<strong>推定した抑制ユニットへの貢献</strong>と
+        <strong>ピット記録の有無</strong>の2列を足したものが、このアプリの主な
+        付加価値になる。公式サイトは合計しか出さず、チーム別の分解も
+        ピット情報も持っていない。
+      </p>
+    </div>
+
+    <div class="board">
+      <div class="board-item">
+        <span class="board-caption">PC</span>
+        <div class="desktop">
+          <nav class="nav">
+            <div class="nav-brand">FGC Scout</div>
+            <a href="briefing.html">次の試合</a>
+            <a href="matches.html">試合一覧</a>
+            <a href="teams.html" aria-current="page">チーム</a>
+            <a href="playoff.html">プレーオフ</a>
+            <a href="pit.html">ピット記録</a>
+          </nav>
+          <div class="shell">
+            <header class="app-head">
+              <span class="app-head-title">チーム</span>
+              <span class="record-head-scout">公式データ 2分前に取得</span>
+            </header>
+            <div class="shell-body">
+              <div class="main">
+                <div class="search">
+                  <input type="search" placeholder="国名で探す" />
+                  <button type="button" class="app-head-menu" aria-label="絞り込み">
+                    ⚙
+                  </button>
+                </div>
+
+                <div class="table-wrap">
+                  <table class="data">
+                    <thead>
+                      <tr>
+                        <th class="num">順位</th>
+                        <th>チーム</th>
+                        <th class="num">RS</th>
+                        <th class="num">最高</th>
+                        <th class="num">Climb</th>
+                        <th class="num">試合</th>
+                        <th class="num">抑制貢献（推定）</th>
+                        <th>ピット</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="num">1</td>
+                        <td>Chinese Taipei</td>
+                        <td class="num">268.4</td>
+                        <td class="num">312</td>
+                        <td class="num">1.84</td>
+                        <td class="num">7</td>
+                        <td class="num">48</td>
+                        <td>—</td>
+                      </tr>
+                      <tr>
+                        <td class="num">2</td>
+                        <td>Germany</td>
+                        <td class="num">261.0</td>
+                        <td class="num">298</td>
+                        <td class="num">1.90</td>
+                        <td class="num">7</td>
+                        <td class="num">45</td>
+                        <td>済</td>
+                      </tr>
+                      <tr>
+                        <td class="num">5</td>
+                        <td>Poland</td>
+                        <td class="num">231.4</td>
+                        <td class="num">268</td>
+                        <td class="num">1.78</td>
+                        <td class="num">7</td>
+                        <td class="num">41</td>
+                        <td>済</td>
+                      </tr>
+                      <tr data-mine>
+                        <td class="num">12</td>
+                        <td>Japan</td>
+                        <td class="num">205.0</td>
+                        <td class="num">241</td>
+                        <td class="num">1.85</td>
+                        <td class="num">3</td>
+                        <td class="num">38</td>
+                        <td>自分</td>
+                      </tr>
+                      <tr>
+                        <td class="num">24</td>
+                        <td>Kenya</td>
+                        <td class="num">188.2</td>
+                        <td class="num">224</td>
+                        <td class="num">1.20</td>
+                        <td class="num">7</td>
+                        <td class="num">31</td>
+                        <td>済</td>
+                      </tr>
+                      <tr>
+                        <td class="num">33</td>
+                        <td>Egypt</td>
+                        <td class="num">179.6</td>
+                        <td class="num">210</td>
+                        <td class="num">1.45</td>
+                        <td class="num">7</td>
+                        <td class="num">29</td>
+                        <td>済</td>
+                      </tr>
+                      <tr>
+                        <td class="num">61</td>
+                        <td>Peru</td>
+                        <td class="num">152.0</td>
+                        <td class="num">152</td>
+                        <td class="num">1.10</td>
+                        <td class="num">1</td>
+                        <td class="num">27 ±</td>
+                        <td>—</td>
+                      </tr>
+                      <tr>
+                        <td class="num">88</td>
+                        <td>Nepal</td>
+                        <td class="num">131.5</td>
+                        <td class="num">158</td>
+                        <td class="num">1.05</td>
+                        <td class="num">6</td>
+                        <td class="num">18</td>
+                        <td>—</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="confidence">
+                  <strong>±</strong> は試合数が少なく幅が大きい推定。
+                  Peru は1試合しか終わっていないため、この数字で判断しない。
+                  ピットが「—」のチームは訪問優先リストに出る
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="board-item">
+        <span class="board-caption">スマホ（列を削らず横スクロールさせる）</span>
+        <div class="device">
+          <div class="shell">
+            <header class="app-head">
+              <span class="app-head-title">チーム</span>
+              <button type="button" class="app-head-menu" aria-label="メニュー">
+                ≡
+              </button>
+            </header>
+            <div class="shell-body">
+              <div class="main">
+                <div class="search">
+                  <input type="search" placeholder="国名で探す" />
+                </div>
+                <div class="table-wrap">
+                  <table class="data">
+                    <thead>
+                      <tr>
+                        <th class="num">順位</th>
+                        <th>チーム</th>
+                        <th class="num">RS</th>
+                        <th class="num">Climb</th>
+                        <th class="num">抑制</th>
+                        <th>ピット</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="num">1</td>
+                        <td>Chinese Taipei</td>
+                        <td class="num">268.4</td>
+                        <td class="num">1.84</td>
+                        <td class="num">48</td>
+                        <td>—</td>
+                      </tr>
+                      <tr>
+                        <td class="num">5</td>
+                        <td>Poland</td>
+                        <td class="num">231.4</td>
+                        <td class="num">1.78</td>
+                        <td class="num">41</td>
+                        <td>済</td>
+                      </tr>
+                      <tr data-mine>
+                        <td class="num">12</td>
+                        <td>Japan</td>
+                        <td class="num">205.0</td>
+                        <td class="num">1.85</td>
+                        <td class="num">38</td>
+                        <td>自分</td>
+                      </tr>
+                      <tr>
+                        <td class="num">24</td>
+                        <td>Kenya</td>
+                        <td class="num">188.2</td>
+                        <td class="num">1.20</td>
+                        <td class="num">31</td>
+                        <td>済</td>
+                      </tr>
+                      <tr>
+                        <td class="num">88</td>
+                        <td>Nepal</td>
+                        <td class="num">131.5</td>
+                        <td class="num">1.05</td>
+                        <td class="num">18</td>
+                        <td>—</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

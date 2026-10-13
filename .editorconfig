@@ -1,0 +1,9 @@
+root = true
+
+# The entry point (`vp`) owns indentation and trailing whitespace for every
+# file type it formats, so this file only declares what it does not: charset,
+# line endings, and the final newline.
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true

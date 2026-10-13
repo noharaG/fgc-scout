@@ -1,0 +1,10 @@
+# Line endings are LF in the repository regardless of the checkout platform.
+# Without this, a Windows checkout rewrites every file and the first diff of
+# any change is unreadable.
+* text=auto eol=lf
+
+# Generated files. Declared here so diffs collapse and language stats ignore
+# them. The generator is named next to each entry; do not hand-edit these.
+
+# TanStack Router plugin
+apps/web/src/routeTree.gen.ts linguist-generated=true

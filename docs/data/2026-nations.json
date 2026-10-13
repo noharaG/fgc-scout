@@ -1,0 +1,764 @@
+{
+  "source": "https://first.global/fgc/ の世界地図（worldcountrieshtmlmap プラグインの設定 JS）",
+  "sourceDetail": "worldcountries-html5-map-13-1788468139.js の map_data。groups[0].color=#008000（緑）に属する group:0 の項目が参加確定",
+  "fetchedAt": "2026-09-22",
+  "note": "公式結果サイト(results.first.global)はこの時点で参加者一覧を持たない（matches/rankings 等すべて空）。ここの国名が大会本番の公式表記と一致する保証は無い。",
+  "count": 179,
+  "nations": [
+    {
+      "name": "Afghanistan",
+      "link": "https://first.global/2026-nations/afghanistan-2026/"
+    },
+    {
+      "name": "Albania",
+      "link": "https://first.global/2026-nations/albania-2026/"
+    },
+    {
+      "name": "Algeria",
+      "link": "https://first.global/2026-nations/algeria-2026/"
+    },
+    {
+      "name": "Angola",
+      "link": "https://first.global/2026-nations/team-angola-2026/"
+    },
+    {
+      "name": "Antigua and Barbuda",
+      "link": "https://first.global/2026-nations/antigua-and-barbuda-2026/"
+    },
+    {
+      "name": "Argentina",
+      "link": ""
+    },
+    {
+      "name": "Aruba",
+      "link": "https://first.global/2026-nations/aruba-2026/"
+    },
+    {
+      "name": "Australia",
+      "link": "https://first.global/2026-nations/australia-2026/"
+    },
+    {
+      "name": "Austria",
+      "link": "https://first.global/2026-nations/austria-2026/"
+    },
+    {
+      "name": "Azerbaijan",
+      "link": "https://first.global/2026-nations/azerbaijan-2026/"
+    },
+    {
+      "name": "Bahamas",
+      "link": "https://first.global/2026-nations/bahamas-2026/"
+    },
+    {
+      "name": "Bangladesh",
+      "link": "https://first.global/2026-nations/bangladesh-2026/"
+    },
+    {
+      "name": "Barbados",
+      "link": "https://first.global/2026-nations/barbados-2026/"
+    },
+    {
+      "name": "Belarus",
+      "link": "https://first.global/2026-nations/belarus-2026/"
+    },
+    {
+      "name": "Belgium",
+      "link": "https://first.global/2026-nations/belgium-2026/"
+    },
+    {
+      "name": "Belize",
+      "link": "https://first.global/2026-nations/belize-2026/"
+    },
+    {
+      "name": "Benin",
+      "link": "https://first.global/2026-nations/benin-2026/"
+    },
+    {
+      "name": "Bhutan",
+      "link": "https://first.global/2026-nations/bhutan-2026/"
+    },
+    {
+      "name": "Bolivia",
+      "link": "https://first.global/2026-nations/bolivia-2026/"
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "link": "https://first.global/2026-nations/bosnia-and-herzegovina-2026/"
+    },
+    {
+      "name": "Botswana",
+      "link": "https://first.global/2026-nations/botswana-2026/"
+    },
+    {
+      "name": "Brazil",
+      "link": "https://first.global/2026-nations/brazil-2026/"
+    },
+    {
+      "name": "Brunei Darussalam",
+      "link": "https://first.global/2026-nations/brunei-darussalam-2026/"
+    },
+    {
+      "name": "Bulgaria",
+      "link": "https://first.global/2026-nations/bulgaria-2026/"
+    },
+    {
+      "name": "Burkina Faso",
+      "link": "https://first.global/2026-nations/burkina-faso-2026/"
+    },
+    {
+      "name": "Burundi",
+      "link": ""
+    },
+    {
+      "name": "Cabo Verde",
+      "link": "https://first.global/2026-nations/cabo-verde-2026/"
+    },
+    {
+      "name": "Cambodia",
+      "link": "https://first.global/2026-nations/cambodia-2026/"
+    },
+    {
+      "name": "Cameroon",
+      "link": "https://first.global/2026-nations/cameroon-2026/"
+    },
+    {
+      "name": "Canada",
+      "link": "https://first.global/2026-nations/canada-2026/%20"
+    },
+    {
+      "name": "Cayman Islands",
+      "link": "https://first.global/2026-nations/cayman-islands-2026/"
+    },
+    {
+      "name": "Central African Republic",
+      "link": "https://first.global/uncategorized/central-african-republic-2026/"
+    },
+    {
+      "name": "Chad",
+      "link": "https://first.global/2026-nations/chad-2026/"
+    },
+    {
+      "name": "Chile",
+      "link": "https://first.global/2026-nations/chile-2026/"
+    },
+    {
+      "name": "China, People's Republic of",
+      "link": "https://first.global/2026-nations/peoples-republic-of-china-2026/"
+    },
+    {
+      "name": "Chinese Taipei",
+      "link": "https://first.global/2026-nations/chinese-taipei-2026/"
+    },
+    {
+      "name": "Colombia",
+      "link": "https://first.global/2026-nations/colombia-2026/"
+    },
+    {
+      "name": "Comoros",
+      "link": "https://first.global/2026-nations/comoros-2026/"
+    },
+    {
+      "name": "Congo",
+      "link": ""
+    },
+    {
+      "name": "Congo, Democratic Republic of the",
+      "link": "https://first.global/2026-nations/democratic-republic-of-the-congo-2026/"
+    },
+    {
+      "name": "Costa Rica",
+      "link": "https://first.global/2026-nations/costa-rica-2026/"
+    },
+    {
+      "name": "Croatia",
+      "link": "https://first.global/2026-nations/croatia-2026/"
+    },
+    {
+      "name": "Cuba",
+      "link": "https://first.global/2026-nations/cuba-2026/"
+    },
+    {
+      "name": "Czechia",
+      "link": "https://first.global/2026-nations/czechia-2026/"
+    },
+    {
+      "name": "Côte d'Ivoire",
+      "link": "https://first.global/2026-nations/cote-divoire-2026/"
+    },
+    {
+      "name": "Denmark",
+      "link": "https://first.global/2026-nations/denmark-2026/"
+    },
+    {
+      "name": "Djibouti",
+      "link": "https://first.global/2026-nations/djibouti-2026/"
+    },
+    {
+      "name": "Dominica",
+      "link": "https://first.global/2026-nations/dominica-2026/"
+    },
+    {
+      "name": "Dominican Republic",
+      "link": "https://first.global/2026-nations/dominican-republic-2026/"
+    },
+    {
+      "name": "Ecuador",
+      "link": "https://first.global/2026-nations/ecuador-2026/"
+    },
+    {
+      "name": "Egypt",
+      "link": "https://first.global/2026-nations/egypt-2026/"
+    },
+    {
+      "name": "El Salvador",
+      "link": "https://first.global/2026-nations/el-salvador-2026/"
+    },
+    {
+      "name": "Equatorial Guinea",
+      "link": "https://first.global/uncategorized/equatorial-guinea-2026/"
+    },
+    {
+      "name": "Eritrea",
+      "link": "https://first.global/2026-nations/eritrea-2026/"
+    },
+    {
+      "name": "Estonia",
+      "link": "https://first.global/2026-nations/estonia-2026/"
+    },
+    {
+      "name": "Eswatini",
+      "link": "https://first.global/2026-nations/eswatini-2026/"
+    },
+    {
+      "name": "Ethiopia",
+      "link": "https://first.global/2026-nations/ethiopia-2026/"
+    },
+    {
+      "name": "Fiji",
+      "link": "https://first.global/2026-nations/fiji-2026/"
+    },
+    {
+      "name": "Finland",
+      "link": "https://first.global/2026-nations/finland-2026/"
+    },
+    {
+      "name": "France",
+      "link": "https://first.global/uncategorized/france-2026/%20"
+    },
+    {
+      "name": "Gabon",
+      "link": "https://first.global/2026-nations/gabon-2026/"
+    },
+    {
+      "name": "Gambia",
+      "link": "https://first.global/2026-nations/gambia-2026/"
+    },
+    {
+      "name": "Georgia",
+      "link": "https://first.global/2026-nations/georgia-2026/"
+    },
+    {
+      "name": "Germany",
+      "link": "https://first.global/2026-nations/germany-2026/"
+    },
+    {
+      "name": "Ghana",
+      "link": "https://first.global/2026-nations/ghana-2026/"
+    },
+    {
+      "name": "Great Britain",
+      "link": "https://first.global/2026-nations/great-britain-2026/"
+    },
+    {
+      "name": "Greece",
+      "link": "https://first.global/2026-nations/greece-2026/"
+    },
+    {
+      "name": "Grenada",
+      "link": "https://first.global/2026-nations/grenada-2026/"
+    },
+    {
+      "name": "Guam",
+      "link": "https://first.global/2026-nations/guam-2026/"
+    },
+    {
+      "name": "Guatemala",
+      "link": "https://first.global/2026-nations/guatemala-2026/"
+    },
+    {
+      "name": "Guinea",
+      "link": "https://first.global/2026-nations/guinea-2026/"
+    },
+    {
+      "name": "Guinea-Bissau",
+      "link": "https://first.global/2026-nations/guinea-bissau-2026/%20‎"
+    },
+    {
+      "name": "Guyana",
+      "link": "https://first.global/2026-nations/guyana-2026/"
+    },
+    {
+      "name": "Haiti",
+      "link": "https://first.global/2026-nations/haiti-2026/"
+    },
+    {
+      "name": "Honduras",
+      "link": "https://first.global/2026-nations/honduras-2026/"
+    },
+    {
+      "name": "Hungary",
+      "link": "https://first.global/2026-nations/hungary-2026/"
+    },
+    {
+      "name": "India",
+      "link": "https://first.global/2026-nations/india-2026/"
+    },
+    {
+      "name": "Indonesia",
+      "link": "https://first.global/2026-nations/indonesia-2026/%20"
+    },
+    {
+      "name": "Iran, Islamic Republic of",
+      "link": ""
+    },
+    {
+      "name": "Iraq",
+      "link": "https://first.global/2026-nations/iran-2026/"
+    },
+    {
+      "name": "Ireland",
+      "link": "https://first.global/2026-nations/ireland-2026/"
+    },
+    {
+      "name": "Israel",
+      "link": "https://first.global/2026-nations/israel-2026/"
+    },
+    {
+      "name": "Italy",
+      "link": "https://first.global/2026-nations/italy-2026/"
+    },
+    {
+      "name": "Jamaica",
+      "link": "https://first.global/2026-nations/jamaica-2026/"
+    },
+    {
+      "name": "Japan",
+      "link": "https://first.global/2026-nations/japan-2026/"
+    },
+    {
+      "name": "Jordan",
+      "link": "https://first.global/2026-nations/jordan-2026/"
+    },
+    {
+      "name": "Kazakhstan",
+      "link": ""
+    },
+    {
+      "name": "Kenya",
+      "link": "https://first.global/2026-nations/kenya-2026/"
+    },
+    {
+      "name": "Korea, Republic of",
+      "link": "https://first.global/2026-nations/republic-of-korea-2026/"
+    },
+    {
+      "name": "Kosovo",
+      "link": "https://first.global/2026-nations/kosovo-2026/"
+    },
+    {
+      "name": "Kyrgyzstan",
+      "link": "https://first.global/2026-nations/kyrgyzstan-2026/"
+    },
+    {
+      "name": "Lao People's Democratic Republic",
+      "link": "https://first.global/2026-nations/laos-2026/"
+    },
+    {
+      "name": "Latvia",
+      "link": "https://first.global/2026-nations/latvia-2026/%20"
+    },
+    {
+      "name": "Lebanon",
+      "link": "https://first.global/2026-nations/lebanon-2026/"
+    },
+    {
+      "name": "Lesotho",
+      "link": "https://first.global/2026-nations/lesotho-2026/"
+    },
+    {
+      "name": "Liberia",
+      "link": "https://first.global/2026-nations/liberia-2026/"
+    },
+    {
+      "name": "Libya",
+      "link": "https://first.global/2026-nations/libya-2026/%20"
+    },
+    {
+      "name": "Lithuania",
+      "link": "https://first.global/2026-nations/lithuania-2026/%20"
+    },
+    {
+      "name": "Luxembourg",
+      "link": "https://first.global/2026-nations/luxembourg-2026/"
+    },
+    {
+      "name": "Madagascar",
+      "link": "https://first.global/2026-nations/madagascar-2026/"
+    },
+    {
+      "name": "Malawi",
+      "link": "https://first.global/2026-nations/malawi-2026/"
+    },
+    {
+      "name": "Malaysia",
+      "link": "https://first.global/2026-nations/malaysia-2026/"
+    },
+    {
+      "name": "Maldives",
+      "link": "https://first.global/2026-nations/maldives-2026/"
+    },
+    {
+      "name": "Mali",
+      "link": "https://first.global/2026-nations/mali-2026/"
+    },
+    {
+      "name": "Malta",
+      "link": "https://first.global/2026-nations/malta-2026/"
+    },
+    {
+      "name": "Mauritania",
+      "link": "https://first.global/2026-nations/mauritania-2026/"
+    },
+    {
+      "name": "Mauritius",
+      "link": "https://first.global/2026-nations/mauritius-2026/"
+    },
+    {
+      "name": "Mexico",
+      "link": "https://first.global/2026-nations/mexico-2026/"
+    },
+    {
+      "name": "Moldova, Republic of",
+      "link": "https://first.global/2026-nations/moldova-2026/"
+    },
+    {
+      "name": "Mongolia",
+      "link": ""
+    },
+    {
+      "name": "Montenegro",
+      "link": "https://first.global/2026-nations/montenegro-2026/"
+    },
+    {
+      "name": "Morocco",
+      "link": "https://first.global/2026-nations/morocco-2026/"
+    },
+    {
+      "name": "Mozambique",
+      "link": ""
+    },
+    {
+      "name": "Myanmar",
+      "link": "https://first.global/2026-nations/myanmar-2026/"
+    },
+    {
+      "name": "Namibia",
+      "link": "https://first.global/2026-nations/namibia-2026/"
+    },
+    {
+      "name": "Nepal",
+      "link": "https://first.global/2026-nations/nepal-2026/"
+    },
+    {
+      "name": "Netherlands",
+      "link": "https://first.global/2026-nations/netherlands-2026/"
+    },
+    {
+      "name": "Nicaragua",
+      "link": "https://first.global/2026-nations/nicaragua-2026/"
+    },
+    {
+      "name": "Niger",
+      "link": "https://first.global/2026-nations/niger-2026/"
+    },
+    {
+      "name": "Nigeria",
+      "link": "https://first.global/2026-nations/nigeria-2026/"
+    },
+    {
+      "name": "North Macedonia",
+      "link": "https://first.global/2026-nations/north-macedonia-2026/"
+    },
+    {
+      "name": "Norway",
+      "link": "https://first.global/2026-nations/norway2026/"
+    },
+    {
+      "name": "Oman",
+      "link": "https://first.global/2026-nations/oman-2026/"
+    },
+    {
+      "name": "Pakistan",
+      "link": "https://first.global/2026-nations/pakistan-2026/"
+    },
+    {
+      "name": "Palestine",
+      "link": "https://first.global/2026-nations/palestine-2026/"
+    },
+    {
+      "name": "Panama",
+      "link": "https://first.global/2026-nations/panama-2026/"
+    },
+    {
+      "name": "Papua New Guinea",
+      "link": "https://first.global/2026-nations/papua-new-guinea-2026/"
+    },
+    {
+      "name": "Paraguay",
+      "link": "https://first.global/2026-nations/paraguay-2026/"
+    },
+    {
+      "name": "Peru",
+      "link": "https://first.global/2026-nations/peru-2026/"
+    },
+    {
+      "name": "Philippines",
+      "link": "https://first.global/2026-nations/philippines-2026/"
+    },
+    {
+      "name": "Poland",
+      "link": "https://first.global/2026-nations/poland-2026/"
+    },
+    {
+      "name": "Portugal",
+      "link": "https://first.global/2026-nations/portugal-2026/"
+    },
+    {
+      "name": "Puerto Rico",
+      "link": "https://first.global/2026-nations/puerto-rico-2026/"
+    },
+    {
+      "name": "Qatar",
+      "link": "https://first.global/2026-nations/qatar-2026/"
+    },
+    {
+      "name": "Romania",
+      "link": "https://first.global/2026-nations/romania-2026/"
+    },
+    {
+      "name": "Russian Federation",
+      "link": "https://first.global/2026-nations/russian-federation-2026/"
+    },
+    {
+      "name": "Rwanda",
+      "link": "https://first.global/2026-nations/rwanda-2026/"
+    },
+    {
+      "name": "Saint Kitts and Nevis",
+      "link": "https://first.global/2026-nations/saint-kitts-and-nevis-2026/"
+    },
+    {
+      "name": "Saint Lucia",
+      "link": "https://first.global/2026-nations/saint-lucia-2026/"
+    },
+    {
+      "name": "Saint Vincent and the Grenadines",
+      "link": "https://first.global/2026-nations/saint-vincent-and-the-grenadines-2026/"
+    },
+    {
+      "name": "Sao Tome and Principe",
+      "link": "https://first.global/2026-nations/sao-tome-and-principe-2026/"
+    },
+    {
+      "name": "Senegal",
+      "link": "https://first.global/2026-nations/senegal-2026/"
+    },
+    {
+      "name": "Serbia",
+      "link": "https://first.global/2026-nations/serbia-2026/"
+    },
+    {
+      "name": "Seychelles",
+      "link": "https://first.global/2026-nations/seychelles-2026/"
+    },
+    {
+      "name": "Sierra Leone",
+      "link": "https://first.global/2026-nations/sierra-leone-2026/"
+    },
+    {
+      "name": "Slovakia",
+      "link": "https://first.global/2026-nations/slovakia-2026/"
+    },
+    {
+      "name": "Slovenia",
+      "link": "https://first.global/2026-nations/slovenia-2026/"
+    },
+    {
+      "name": "Solomon Islands",
+      "link": "https://first.global/2026-nations/solomon-islands-2026/"
+    },
+    {
+      "name": "Somalia",
+      "link": "https://first.global/2026-nations/somalia-2026/"
+    },
+    {
+      "name": "South Africa",
+      "link": "https://first.global/2026-nations/south-africa-2026/"
+    },
+    {
+      "name": "South Sudan",
+      "link": "https://first.global/2026-nations/south-sudan-2026/"
+    },
+    {
+      "name": "Spain",
+      "link": "https://first.global/2026-nations/spain-2026/"
+    },
+    {
+      "name": "Sri Lanka",
+      "link": "https://first.global/2026-nations/sri-lanka-2026/"
+    },
+    {
+      "name": "Sudan",
+      "link": "https://first.global/2026-nations/sudan-2026/"
+    },
+    {
+      "name": "Sweden",
+      "link": "https://first.global/2026-nations/sweden-2026/"
+    },
+    {
+      "name": "Syrian Arab Republic",
+      "link": "https://first.global/2026-nations/syria-2026/"
+    },
+    {
+      "name": "Tajikistan",
+      "link": ""
+    },
+    {
+      "name": "Tanzania, United Republic of",
+      "link": "https://first.global/2026-nations/united-republic-of-tanzania-2026/"
+    },
+    {
+      "name": "Thailand",
+      "link": ""
+    },
+    {
+      "name": "Timor-Leste",
+      "link": "https://first.global/2026-nations/timor-leste-2026/"
+    },
+    {
+      "name": "Togo",
+      "link": "https://first.global/2026-nations/togo-2026/"
+    },
+    {
+      "name": "Trinidad and Tobago",
+      "link": "https://first.global/2026-nations/trinidad-and-tobago-2026/"
+    },
+    {
+      "name": "Tunisia",
+      "link": "https://first.global/2026-nations/tunisia-2026/"
+    },
+    {
+      "name": "Turkmenistan",
+      "link": "https://first.global/2026-nations/turkmenistan-2026/"
+    },
+    {
+      "name": "Türkiye",
+      "link": "https://first.global/2026-nations/turkiye-2026/"
+    },
+    {
+      "name": "Uganda",
+      "link": "https://first.global/2026-nations/uganda-2026/"
+    },
+    {
+      "name": "Ukraine",
+      "link": "https://first.global/uncategorized/ukraine-2026/"
+    },
+    {
+      "name": "United Arab Emirates",
+      "link": "https://first.global/2026-nations/united-arab-emirates-2026/"
+    },
+    {
+      "name": "United States of America",
+      "link": "https://first.global/2026-nations/united-states-of-america-2026/"
+    },
+    {
+      "name": "Uruguay",
+      "link": "https://first.global/2026-nations/uruguay-2026/"
+    },
+    {
+      "name": "Uzbekistan",
+      "link": ""
+    },
+    {
+      "name": "Vanuatu",
+      "link": "https://first.global/2026-nations/vanuatu-2026/"
+    },
+    {
+      "name": "Venezuela",
+      "link": "https://first.global/2026-nations/venezuela-2026/"
+    },
+    {
+      "name": "Vietnam",
+      "link": "https://first.global/2026-nations/vietnam-2026/"
+    },
+    {
+      "name": "Virgin Islands, British",
+      "link": "https://first.global/2026-nations/british-virgin-islands-2026/"
+    },
+    {
+      "name": "Virgin Islands, U.S.",
+      "link": "https://first.global/2026-nations/us-virgin-islands-2026/"
+    },
+    {
+      "name": "Yemen",
+      "link": "https://first.global/2026-nations/yemen-2026/"
+    },
+    {
+      "name": "Zambia",
+      "link": ""
+    },
+    {
+      "name": "Zimbabwe",
+      "link": "https://first.global/2026-nations/zimbabwe-2026/"
+    }
+  ],
+  "additions": {
+    "fetchedAt": "2026-10-05",
+    "note": "nations（緑＝group:0）に無いが、2026のチームページが実在する8チーム。7件は地図の map_data にリンク付きで載っているのに group が無い（worldcountries-html5-map-13-1791162153.js で確認、緑の179件は 09-22 から変わらず。ダミーの 'zzz' だけ増えていた）。Hope は地図に載らず、https://first.global/2026-nations/ の一覧にだけ居る。どのページも 200 を返し、題は 'Team <名前> 2026'。roster.ts には2025公式の表記で入れてある。",
+    "count": 8,
+    "nations": [
+      {
+        "name": "American Samoa",
+        "link": "https://first.global/2026-nations/american-samoa-2026/"
+      },
+      {
+        "name": "Cook Islands",
+        "link": "https://first.global/2026-nations/cook-island-2026/"
+      },
+      {
+        "name": "Hong Kong, China",
+        "link": "https://first.global/2026-nations/hong-kong-2026/"
+      },
+      {
+        "name": "Kiribati",
+        "link": "https://first.global/2026-nations/kiribati-2026/"
+      },
+      {
+        "name": "Marshall Islands",
+        "link": "https://first.global/2026-nations/marshall-islands-2026/"
+      },
+      {
+        "name": "Micronesia, Federated States of",
+        "link": "https://first.global/2026-nations/micronesia-2026/"
+      },
+      {
+        "name": "Tonga",
+        "link": "https://first.global/2026-nations/tonga-2026/"
+      },
+      {
+        "name": "Team Hope (Refugees)",
+        "link": "https://first.global/2026-nations/hope-2026/"
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  // src は Worker、scripts は Node で動く。ランタイムが違うので型設定を
+  // 2つに分け、このファイルは束ねるだけにする(→ S-23)。
+  // 型検査のスクリプトは両方を回す(package.json の typecheck)。
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}

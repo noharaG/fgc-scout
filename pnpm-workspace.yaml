@@ -1,0 +1,51 @@
+# ワークスペースのメンバーは glob ではなく1行ずつ明示列挙する(→ S-21)。
+# 別言語のディレクトリはここに書かない。現在は TypeScript のみ。
+# 実体を持つまでメンバーに登録しない(→ S-11)。
+packages:
+  - "apps/api"
+  - "apps/web"
+
+# インストール後スクリプトの許可リスト(→ A-40)。理由を必ず添える。
+allowBuilds:
+  # バンドラのネイティブバイナリ。これが無いとビルドが起動しない。
+  esbuild: true
+  # ローカルの Workers ランタイム。これが無いと開発サーバが起動しない。
+  workerd: true
+
+# 連動して動かないと壊れる版の正本(→ S-20)。各パッケージは "catalog:" で参照する。
+# 依存を足すときは、ここと AGENTS.md の役割表の両方に行を足す(→ A-04)。
+catalog:
+  typescript: 7.0.2
+  vite: npm:@voidzero-dev/vite-plus-core@0.3.1
+  vite-plus: &vite-plus-version 0.3.1
+  knip: 6.35.1
+  hono: 4.13.7
+  wrangler: 4.130.0
+  "@cloudflare/workers-types": 5.20260910.1
+  # scripts/ が Node で動くために要る。src/ は Worker なので使わない(→ S-23)。
+  "@types/node": 22.20.2
+  # 連動する組。React 本体と型、Tailwind 本体とプラグイン、
+  # ルータ本体とビルドプラグインは、それぞれ版がずれると壊れる。
+  react: 19.3.0
+  react-dom: 19.3.0
+  "@types/react": 19.3.0
+  "@types/react-dom": 19.3.0
+  tailwindcss: 4.3.3
+  "@tailwindcss/vite": 4.3.3
+  "@tanstack/react-router": 1.170.34
+  "@tanstack/router-plugin": 1.168.37
+  "@tanstack/react-query": 5.102.8
+  "@vitejs/plugin-react": 6.1.1
+  "@playwright/test": 1.63.0
+
+# Cloudflare のランタイム型は実行基盤の更新に合わせて毎日出るため、
+# 公開直後でも取得を許す。ここに挙げるのはこの1件だけにする。
+minimumReleaseAgeExclude:
+  - "@cloudflare/workers-types@5.20260910.1"
+
+# 同じ値を持たなければ壊れるエントリを anchor で同期させる(→ S-20)。
+overrides:
+  vite: "catalog:"
+peerDependencyRules:
+  allowedVersions:
+    vite: *vite-plus-version

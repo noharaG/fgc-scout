@@ -1,0 +1,13 @@
+{
+  // Worker で動く側。base を extends し、環境差だけを足す(→ S-23)。
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["es2023"],
+    // Worker のランタイム型はこの設定の中でだけグローバルに入れる。
+    // 画面(apps/web)は自分の tsconfig で解決するので、ここで入れても
+    // ブラウザ側の型グラフには入らない。bindings の形だけは src/env.ts が
+    // モジュールの型として持ち、画面はそちらを解決する(→ S-33)。
+    "types": ["@cloudflare/workers-types"]
+  },
+  "include": ["src"]
+}

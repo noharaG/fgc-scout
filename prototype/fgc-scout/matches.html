@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="tokens.css" />
+    <title>FGC Scout</title>
+  </head>
+  <body>
+    <div class="board-head">
+      <h1>試合一覧</h1>
+      <p>
+        公式データの <code>matches</code> をそのまま並べる。
+        <strong>Japan が出る試合だけ枠と地の色を変える</strong>ので、
+        190チームぶんの行から自分を探す作業が消える。
+        済んだ試合はスコア、未消化は予定時刻を出す。
+      </p>
+    </div>
+
+    <div class="board">
+      <div class="board-item">
+        <span class="board-caption">スマホ</span>
+        <div class="device">
+          <div class="shell">
+            <header class="app-head">
+              <span class="app-head-title">試合一覧</span>
+              <button type="button" class="app-head-menu" aria-label="メニュー">
+                ≡
+              </button>
+            </header>
+
+            <div class="shell-body">
+              <div class="main">
+                <div class="segment">
+                  <button type="button" aria-pressed="true">自分の試合</button>
+                  <button type="button" aria-pressed="false">すべて</button>
+                </div>
+
+                <ul class="match-list">
+                  <li class="match-item" data-mine>
+                    <span class="match-no">Q31</span>
+                    <span class="match-teams">
+                      <span class="match-side">赤 Japan · Kenya · Peru</span>
+                      <span class="match-side">青 Poland · Egypt · Nepal</span>
+                    </span>
+                    <span class="match-score-pending">10:42</span>
+                  </li>
+                  <li class="match-item" data-mine>
+                    <span class="match-no">Q44</span>
+                    <span class="match-teams">
+                      <span class="match-side"
+                        >赤 Morocco · Japan · Iceland</span
+                      >
+                      <span class="match-side">青 Brazil · India · Ghana</span>
+                    </span>
+                    <span class="match-score-pending">14:10</span>
+                  </li>
+                  <li class="match-item" data-mine>
+                    <span class="match-no">Q22</span>
+                    <span class="match-teams">
+                      <span class="match-side">赤 Mexico · Japan · Nepal</span>
+                      <span class="match-side">青 Chile · Kenya · Serbia</span>
+                    </span>
+                    <span class="match-score">241</span>
+                  </li>
+                  <li class="match-item" data-mine>
+                    <span class="match-no">Q14</span>
+                    <span class="match-teams">
+                      <span class="match-side">赤 Egypt · Peru · Japan</span>
+                      <span class="match-side">青 Poland · Kenya · Oman</span>
+                    </span>
+                    <span class="match-score">198</span>
+                  </li>
+                  <li class="match-item" data-mine>
+                    <span class="match-no">Q6</span>
+                    <span class="match-teams">
+                      <span class="match-side">赤 Japan · Ghana · Chile</span>
+                      <span class="match-side">青 India · Serbia · Oman</span>
+                    </span>
+                    <span class="match-score">176</span>
+                  </li>
+                </ul>
+
+                <div class="confidence">
+                  Japan は <strong>3試合</strong> 済み・<strong>5試合</strong>
+                  残り。順位は<strong>最低スコアの1試合を除いた平均</strong>で決まるので、
+                  残り試合の方が効く
+                </div>
+
+                <p class="stale-note">公式データ 2分前に取得</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="board-item">
+        <span class="board-caption">PC（すべての試合。表は横スクロールに逃がす）</span>
+        <div class="desktop">
+          <nav class="nav">
+            <div class="nav-brand">FGC Scout</div>
+            <a href="briefing.html">次の試合</a>
+            <a href="matches.html" aria-current="page">試合一覧</a>
+            <a href="teams.html">チーム</a>
+            <a href="playoff.html">プレーオフ</a>
+            <a href="pit.html">ピット記録</a>
+          </nav>
+          <div class="shell">
+            <header class="app-head">
+              <span class="app-head-title">試合一覧</span>
+              <span class="record-head-scout">公式データ 2分前に取得</span>
+            </header>
+            <div class="shell-body">
+              <div class="main">
+                <div class="table-wrap">
+                  <table class="data">
+                    <thead>
+                      <tr>
+                        <th>試合</th>
+                        <th>赤</th>
+                        <th>青</th>
+                        <th class="num">赤</th>
+                        <th class="num">青</th>
+                        <th>Field</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr data-mine>
+                        <td>Q31</td>
+                        <td>Japan · Kenya · Peru</td>
+                        <td>Poland · Egypt · Nepal</td>
+                        <td class="num">—</td>
+                        <td class="num">—</td>
+                        <td>2</td>
+                      </tr>
+                      <tr>
+                        <td>Q30</td>
+                        <td>Brazil · Oman · Serbia</td>
+                        <td>India · Ghana · Chile</td>
+                        <td class="num">—</td>
+                        <td class="num">—</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>Q29</td>
+                        <td>Iceland · Morocco · Mexico</td>
+                        <td>Nepal · Peru · Egypt</td>
+                        <td class="num">204</td>
+                        <td class="num">188</td>
+                        <td>2</td>
+                      </tr>
+                      <tr data-mine>
+                        <td>Q22</td>
+                        <td>Mexico · Japan · Nepal</td>
+                        <td>Chile · Kenya · Serbia</td>
+                        <td class="num">241</td>
+                        <td class="num">219</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>Q21</td>
+                        <td>Poland · Ghana · Oman</td>
+                        <td>Brazil · Iceland · India</td>
+                        <td class="num">266</td>
+                        <td class="num">231</td>
+                        <td>2</td>
+                      </tr>
+                      <tr data-mine>
+                        <td>Q14</td>
+                        <td>Egypt · Peru · Japan</td>
+                        <td>Poland · Kenya · Oman</td>
+                        <td class="num">198</td>
+                        <td class="num">252</td>
+                        <td>1</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

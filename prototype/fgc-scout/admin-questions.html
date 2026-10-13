@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="tokens.css" />
+    <title>FGC Scout</title>
+  </head>
+  <body>
+    <div class="board-head">
+      <h1>質問項目の管理（管理者だけ）</h1>
+      <p>
+        聞き取り項目を固定の仕様にせず、データとして持つ。カードをその場で開いて
+        直し、入力が止まったら自動で送る。設計上の分岐が4つある。
+      </p>
+      <p>
+        <strong>1. 回答が付くまでは削除、付いた後は無効化。</strong>まだ誰も
+        答えていない項目は消してよい。回答が付いた後に定義を消すと、その記録が
+        「値だけあって意味が分からないもの」になるので、そこからは断る。<br />
+        <strong>2. 選択肢にも識別子を持たせる。</strong>「床から吸う」を
+        「床から拾う」に直したときに過去の回答が壊れないため。<br />
+        <strong>3. 推定式が読む項目は消せない。</strong>消そうとしたら
+        「何がそれを使っているか」を示して断る。<br />
+        <strong>4. 保存ボタンを置かない。</strong>その代わり、送れたのか
+        送れていないのかをカードの右上に必ず文字で出す。
+      </p>
+    </div>
+
+    <div class="board">
+      <!-- 一覧。1枚だけ開く -->
+      <div class="board-item">
+        <span class="board-caption">1. 一覧。カードを押すとその場で開く</span>
+        <div class="desktop" style="height: 1180px">
+          <nav class="nav">
+            <div class="nav-brand">FGC Scout</div>
+            <a href="briefing.html">次の試合</a>
+            <a href="matches.html">試合一覧</a>
+            <a href="teams.html">チーム</a>
+            <a href="pit.html">ピット記録</a>
+            <a href="admin-questions.html" aria-current="page">質問の管理</a>
+          </nav>
+          <div class="shell">
+            <header class="app-head">
+              <span class="app-head-title">質問の管理</span>
+              <span class="record-head-scout">管理者 · こばやし</span>
+            </header>
+            <div class="shell-body">
+              <div class="main">
+                <p class="section-heading-note" style="margin-top: 0">
+                  ピット記録の聞き取り項目。並べ替えた順にそのまま画面へ出る
+                </p>
+
+                <!-- グループ名はその場で直す。キーとラベルは別物なので、
+                     名前を直しても束ねている項目は動かない -->
+                <div class="group-head">
+                  <span class="admin-group">グループ</span>
+                  <input class="text-input" type="text" value="搬送" />
+                  <button type="button" aria-label="上へ">▲</button>
+                  <button type="button" aria-label="下へ">▼</button>
+                  <!-- 項目が残っているうちは消せない -->
+                  <button type="button" class="group-del" disabled>削除</button>
+                </div>
+                <ul class="admin-list">
+                  <li class="q-card">
+                    <div class="q-head">
+                      <span class="admin-order">
+                        <button type="button" aria-label="上へ">▲</button>
+                        <button type="button" aria-label="下へ">▼</button>
+                      </span>
+                      <button type="button" class="q-head-main">
+                        <span class="q-head-label">写真</span>
+                        <span class="q-head-en">May I take some photos?</span>
+                      </button>
+                      <span class="admin-tag">写真</span>
+                    </div>
+                  </li>
+
+                  <li class="q-card">
+                    <div class="q-head">
+                      <span class="admin-order">
+                        <button type="button" aria-label="上へ">▲</button>
+                        <button type="button" aria-label="下へ">▼</button>
+                      </span>
+                      <button type="button" class="q-head-main">
+                        <span class="q-head-label">1回に運べる個数</span>
+                        <span class="q-head-en">
+                          How many balls can you carry at once?
+                        </span>
+                      </button>
+                      <span class="admin-tag">数値</span>
+                      <span class="admin-tag" data-locked>推定が使用</span>
+                    </div>
+                  </li>
+
+                  <!-- 開いている1枚 -->
+                  <li class="q-card" data-open>
+                    <div class="q-head">
+                      <span class="admin-order">
+                        <button type="button" aria-label="上へ">▲</button>
+                        <button type="button" aria-label="下へ">▼</button>
+                      </span>
+                      <button type="button" class="q-head-main">
+                        <span class="q-head-label">拾い方</span>
+                        <span class="q-head-en">
+                          How do you pick up the balls?
+                        </span>
+                      </button>
+                      <span class="q-state" data-state="saved">
+                        保存しました
+                      </span>
+                    </div>
+
+                    <div class="q-body">
+                      <div class="form-row">
+                        <div class="form-label">日本語のラベル</div>
+                        <input class="text-input" type="text" value="拾い方" />
+                      </div>
+
+                      <div class="form-row">
+                        <div class="form-label">英語の質問文</div>
+                        <div class="form-help">
+                          生徒がそのまま読み上げる。長いと読まれない
+                        </div>
+                        <input
+                          class="text-input"
+                          type="text"
+                          value="How do you pick up the balls?"
+                        />
+                      </div>
+
+                      <div class="form-row">
+                        <div class="form-label">入力形式</div>
+                        <div class="segment is-dense">
+                          <button type="button" aria-pressed="false">
+                            数値
+                          </button>
+                          <button type="button" aria-pressed="true">
+                            単一選択
+                          </button>
+                          <button type="button" aria-pressed="false">
+                            複数選択
+                          </button>
+                          <button type="button" aria-pressed="false">
+                            自由文
+                          </button>
+                          <button type="button" aria-pressed="false">
+                            写真
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="form-row">
+                        <div class="form-label">選択肢</div>
+                        <div class="form-help">
+                          左の識別子が回答に保存される。ラベルを直しても過去の回答は壊れない
+                        </div>
+                        <div class="choice-list">
+                          <div class="choice-row">
+                            <span class="choice-id">intake_floor</span>
+                            <input
+                              class="text-input"
+                              type="text"
+                              value="床から吸う"
+                            />
+                            <button
+                              type="button"
+                              class="choice-del"
+                              aria-label="この選択肢を使わない"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                          <div class="choice-row">
+                            <span class="choice-id">intake_grip</span>
+                            <input class="text-input" type="text" value="挟む" />
+                            <button
+                              type="button"
+                              class="choice-del"
+                              aria-label="この選択肢を使わない"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                          <div class="choice-row">
+                            <span class="choice-id">intake_scoop</span>
+                            <input
+                              class="text-input"
+                              type="text"
+                              value="すくう"
+                            />
+                            <button
+                              type="button"
+                              class="choice-del"
+                              aria-label="この選択肢を使わない"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                          <div class="choice-row">
+                            <span class="choice-id">intake_none</span>
+                            <input
+                              class="text-input"
+                              type="text"
+                              value="拾えない"
+                            />
+                            <button
+                              type="button"
+                              class="choice-del"
+                              aria-label="この選択肢を使わない"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        </div>
+                        <button type="button" class="admin-add is-inline">
+                          ＋ 選択肢を足す
+                        </button>
+                      </div>
+
+                      <div class="form-row">
+                        <div class="form-label">グループ（ページの分かれ目）</div>
+                        <div class="segment is-dense">
+                          <button type="button" aria-pressed="true">搬送</button>
+                          <button type="button" aria-pressed="false">
+                            クライム
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="q-foot">
+                        <button
+                          type="button"
+                          class="q-switch"
+                          data-role="disable"
+                          aria-pressed="false"
+                        >
+                          この項目を無効にする
+                        </button>
+                        <!-- 削除は取り消せないので、1度目は確かめる操作に変える -->
+                        <button type="button" class="q-switch" data-role="delete">
+                          この項目を削除する
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="q-card">
+                    <div class="q-head">
+                      <span class="admin-order">
+                        <button type="button" aria-label="上へ">▲</button>
+                        <button type="button" aria-label="下へ">▼</button>
+                      </span>
+                      <button type="button" class="q-head-main">
+                        <span class="q-head-label">入れ方</span>
+                        <span class="q-head-en">
+                          Where do you put the balls?
+                        </span>
+                      </button>
+                      <span class="admin-tag">単一選択</span>
+                    </div>
+                  </li>
+                </ul>
+
+                <button type="button" class="admin-add">
+                  ＋ 搬送に項目を足す
+                </button>
+
+                <!-- 空のグループ。作ってから項目を移す手順を踏めるように、
+                     項目が0でも消さずに出す -->
+                <div class="group-head">
+                  <span class="admin-group">グループ</span>
+                  <input class="text-input" type="text" value="自律" />
+                  <button type="button" aria-label="上へ">▲</button>
+                  <button type="button" aria-label="下へ">▼</button>
+                  <button type="button" class="group-del">削除</button>
+                  <span class="q-state" data-state="saved">保存しました</span>
+                </div>
+                <p class="group-empty">
+                  このグループに項目はありません。下の「項目を足す」で作るか、
+                  他のグループの項目を開いて移してください
+                </p>
+                <button type="button" class="admin-add">
+                  ＋ 自律に項目を足す
+                </button>
+
+                <button type="button" class="admin-add is-inline">
+                  ＋ グループを足す
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 消せない項目と、無効にした項目 -->
+      <div class="board-item">
+        <span class="board-caption">2. 消せない項目・使わない選択肢</span>
+        <div class="desktop" style="height: 1180px">
+          <nav class="nav">
+            <div class="nav-brand">FGC Scout</div>
+            <a href="briefing.html">次の試合</a>
+            <a href="matches.html">試合一覧</a>
+            <a href="teams.html">チーム</a>
+            <a href="pit.html">ピット記録</a>
+            <a href="admin-questions.html" aria-current="page">質問の管理</a>
+          </nav>
+          <div class="shell">
+            <header class="app-head">
+              <span class="app-head-title">質問の管理</span>
+              <span class="record-head-scout">管理者 · こばやし</span>
+            </header>
+            <div class="shell-body">
+              <div class="main">
+                <p class="admin-group" style="margin-top: 0">
+                  グループ: クライム
+                </p>
+                <ul class="admin-list">
+                  <!-- 役割キーを持つ項目。無効にできない -->
+                  <li class="q-card" data-open>
+                    <div class="q-head">
+                      <span class="admin-order">
+                        <button type="button" aria-label="上へ">▲</button>
+                        <button type="button" aria-label="下へ">▼</button>
+                      </span>
+                      <button type="button" class="q-head-main">
+                        <span class="q-head-label">登れる ZONE（申告）</span>
+                        <span class="q-head-en">
+                          How high can you climb on the brace?
+                        </span>
+                      </button>
+                      <span class="q-state" data-state="saving">
+                        保存しています
+                      </span>
+                    </div>
+
+                    <div class="q-body">
+                      <div class="form-row">
+                        <div class="form-label">日本語のラベル</div>
+                        <input
+                          class="text-input"
+                          type="text"
+                          value="登れる ZONE（申告）"
+                        />
+                      </div>
+
+                      <div class="form-row">
+                        <div class="form-label">選択肢</div>
+                        <div class="choice-list">
+                          <div class="choice-row">
+                            <span class="choice-id">climb_none</span>
+                            <input class="text-input" type="text" value="不可" />
+                            <button
+                              type="button"
+                              class="choice-del"
+                              aria-label="この選択肢を使わない"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                          <div class="choice-row">
+                            <span class="choice-id">climb_contact</span>
+                            <input class="text-input" type="text" value="接触" />
+                            <button
+                              type="button"
+                              class="choice-del"
+                              aria-label="この選択肢を使わない"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                          <!-- 回答が付いていて消せなかった選択肢。定義は残し、
+                               聞き取りの画面からは外す -->
+                          <div class="choice-row" data-disabled>
+                            <span class="choice-id">climb_zone0</span>
+                            <input
+                              class="text-input"
+                              type="text"
+                              value="ZONE 0"
+                            />
+                            <button
+                              type="button"
+                              class="choice-del"
+                              aria-label="この選択肢を戻す"
+                            >
+                              ↩
+                            </button>
+                          </div>
+                          <div class="choice-row">
+                            <span class="choice-id">climb_zone1</span>
+                            <input
+                              class="text-input"
+                              type="text"
+                              value="ZONE 1"
+                            />
+                            <button
+                              type="button"
+                              class="choice-del"
+                              aria-label="この選択肢を使わない"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        </div>
+                        <button type="button" class="admin-add is-inline">
+                          ＋ 選択肢を足す
+                        </button>
+                      </div>
+
+                      <div class="q-foot">
+                        <button
+                          type="button"
+                          class="q-switch"
+                          data-role="disable"
+                          aria-pressed="false"
+                          disabled
+                        >
+                          この項目を無効にする
+                        </button>
+                      </div>
+
+                      <div class="locked-note">
+                        <strong>この項目は無効にできない。</strong>
+                        クライム乗数の推定が
+                        <code>climb_zone</code> として読んでいる。
+                        消せるようにすると推定が黙って壊れる。ラベルと選択肢は
+                        直してよい
+                      </div>
+                    </div>
+                  </li>
+
+                  <!-- 無効にした項目。消えていない -->
+                  <li class="q-card" data-disabled>
+                    <div class="q-head">
+                      <span class="admin-order">
+                        <button type="button" aria-label="上へ">▲</button>
+                        <button type="button" aria-label="下へ">▼</button>
+                      </span>
+                      <button type="button" class="q-head-main">
+                        <span class="q-head-label">自律の有無</span>
+                        <span class="q-head-en">
+                          Do you have an autonomous routine?
+                        </span>
+                      </button>
+                      <span class="admin-tag">無効</span>
+                    </div>
+                  </li>
+
+                  <!-- 送れなかったカード -->
+                  <li class="q-card">
+                    <div class="q-head">
+                      <span class="admin-order">
+                        <button type="button" aria-label="上へ">▲</button>
+                        <button type="button" aria-label="下へ">▼</button>
+                      </span>
+                      <button type="button" class="q-head-main">
+                        <span class="q-head-label">備考</span>
+                        <span class="q-head-en">
+                          Anything you are especially proud of?
+                        </span>
+                      </button>
+                      <span class="q-state" data-state="error">
+                        保存できません
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+
+                <button type="button" class="admin-add">
+                  ＋ クライムに項目を足す
+                </button>
+
+                <div class="confidence">
+                  <strong>「自律の有無」は回答が付いているので消せない。</strong>
+                  今年のゲームには自律フェーズが無いので聞く必要はないが、
+                  定義を消すと過去に答えてもらった記録が読めなくなる。
+                  そこで無効にしてある。無効の項目はピット記録の画面に出ない。
+                  <strong>まだ誰も答えていない項目は削除できる。</strong>
+                  どちらになるかはサーバが回答を数えて決める
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

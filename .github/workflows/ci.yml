@@ -1,0 +1,71 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Read-only. Anything that needs write access lives in deploy.yml.
+permissions:
+  contents: read
+
+jobs:
+  # Secrets and data must never be tracked. Neither type checking nor lint can
+  # see this, so it gets its own job instead of being buried in `verify`.
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Runtime secrets are not tracked
+        run: |
+          tracked=$(git ls-files -- 'apps/api/.dev.vars' '.env' '**/.env' || true)
+          if [ -n "$tracked" ]; then
+            echo "These files must not be tracked; only the .example templates are:"
+            echo "$tracked"
+            exit 1
+          fi
+
+      - name: Database files are not tracked
+        run: |
+          tracked=$(git ls-files -- '*.sqlite' '*.sqlite3' '*.db' || true)
+          if [ -n "$tracked" ]; then
+            echo "Database files must not be committed:"
+            echo "$tracked"
+            exit 1
+          fi
+
+      - name: The secret template carries no real value
+        run: |
+          if grep -qE '^(VIEWER_PASSWORD_HASH|ADMIN_PASSWORD_HASH)="pbkdf2-sha256\$' apps/api/.dev.vars.example; then
+            echo "apps/api/.dev.vars.example contains a real hash. Keep placeholders only."
+            exit 1
+          fi
+
+  # One job per language. This repository has TypeScript only, so the steps are
+  # the entry-point commands in order.
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      # Bootstrap only. Every step after this goes through the single entry
+      # point (`vp`) via the root scripts.
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm run check
+      - run: pnpm run knip
+      - run: pnpm run typecheck
+      - run: pnpm run test
+      - run: pnpm run build
+
+      # The build output feeds the Worker's assets directory, so the config
+      # dry-run goes immediately after it.
+      - run: pnpm --dir apps/api exec wrangler deploy --dry-run --outdir /tmp/worker

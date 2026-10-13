@@ -1,0 +1,10 @@
+{
+  // src はブラウザ、vite.config.ts は Node、e2e は両方。ランタイムが違うので
+  // 型設定を3つに分け、このファイルは束ねるだけにする(→ S-23)。
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.e2e.json" }
+  ]
+}

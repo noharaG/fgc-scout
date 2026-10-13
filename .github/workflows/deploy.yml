@@ -1,0 +1,47 @@
+name: deploy
+
+# Publishing swaps what everyone sees, so it is never scheduled and never
+# triggered by a push. A person starts it.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Serialise deploys and never cancel one halfway through.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # The same checks as ci.yml. A deploy never skips them.
+      - run: pnpm run check
+      - run: pnpm run typecheck
+      - run: pnpm run test
+      - run: pnpm run build
+
+      - name: Apply pending migrations
+        run: pnpm --dir apps/api exec wrangler d1 migrations apply fgc-scout --remote
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Deploy
+        run: pnpm --dir apps/api exec wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

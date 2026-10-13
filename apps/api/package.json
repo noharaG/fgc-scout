@@ -1,0 +1,25 @@
+{
+  "name": "api",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./type": {
+      "types": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "test": "vp test",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json",
+    "dev": "wrangler dev",
+    "db:local": "wrangler d1 migrations apply fgc-scout --local",
+    "hash-password": "node scripts/hash-password.ts"
+  },
+  "dependencies": {
+    "hono": "catalog:"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "catalog:",
+    "@types/node": "catalog:",
+    "wrangler": "catalog:"
+  }
+}

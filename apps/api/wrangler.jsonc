@@ -1,0 +1,45 @@
+{
+  // 配信単位を1つにする。画面の静的資産と API を同じ Worker が配り、
+  // API のパス接頭辞だけを先に受ける(→ A-21)。
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fgc-scout",
+  "main": "src/index.ts",
+
+  // ランタイムを日付で固定する(→ A-39)。上げるときは CI の dry-run で確かめる。
+  // 互換フラグは必要になるまで足さない。nodejs_compat を有効にすると
+  // @types/node が要るようになるが、Node の API は使っていない(→ A-07)。
+  "compatibility_date": "2026-09-10",
+
+  // A-21 / A-22 はカスタムドメインと workers_dev の無効化を定めているが、
+  // このプロジェクトはドメインを持たない。要件定義書の9章の例外表に
+  // 解消条件つきで登録してある(→ ADR 0001)。ドメインを取得した時点で
+  // routes を足し、workers_dev を false にする。
+  "workers_dev": true,
+  "preview_urls": false,
+
+  "assets": {
+    "directory": "../web/dist",
+    "not_found_handling": "single-page-application",
+    // API は静的資産より先に Worker が受ける。
+    "run_worker_first": ["/api/*"],
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "fgc-scout",
+      // `wrangler d1 create fgc-scout` が返した ID をここに入れる。
+      // ローカル開発(--local)はこの値を使わない。
+      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID",
+    },
+  ],
+
+  "vars": {
+    // 自チーム。公式データの participants[].country と突き合わせる。
+    "OUR_TEAM": "Japan",
+    // 公式サイトを叩く最小間隔。元データが s-maxage=10 で10秒粒度しか
+    // 持たないため、これより短くしても新しい値は返らない(→ ADR 0003)。
+    "OFFICIAL_MIN_INTERVAL_SECONDS": "30",
+    "OFFICIAL_BASE_URL": "https://results.first.global",
+  },
+}

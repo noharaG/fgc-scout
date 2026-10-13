@@ -1,0 +1,11 @@
+{
+  // ブラウザテストは Node で走るが、`page.evaluate` に渡す関数はブラウザ側で
+  // 実行される。どちらの型も要るので、ビルド設定とは別の環境として分ける
+  // (→ S-23)。src 側にこの組み合わせを持ち込まない。
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["es2023", "dom"],
+    "types": ["node"]
+  },
+  "include": ["e2e", "playwright.config.ts"]
+}

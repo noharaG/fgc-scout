@@ -1,0 +1,912 @@
+{
+  "source": "https://web.archive.org/web/20251111082511/https://results.first.global/ の __NEXT_DATA__",
+  "note": "2025 大会の公式結果。rankings[].team が名前とコードを持ち、matches[].participants[] はコードのみを持つ。**`country` は ISO3 ではなく IOC コード**（Algeria=ALG / ISO3 は DZA、Iran=IRI / IRN、Switzerland=SUI / CHE）。`countryCode` のほうが ISO 3166-1 alpha-2 で、国旗の絵文字はこちらから作る。",
+  "count": 181,
+  "teams": {
+    "Afghanistan": {
+      "ioc": "AFG",
+      "iso2": "af",
+      "teamKey": 1
+    },
+    "Albania": {
+      "ioc": "ALB",
+      "iso2": "al",
+      "teamKey": 2
+    },
+    "Algeria": {
+      "ioc": "ALG",
+      "iso2": "dz",
+      "teamKey": 3
+    },
+    "American Samoa": {
+      "ioc": "ASA",
+      "iso2": "as",
+      "teamKey": 4
+    },
+    "Angola": {
+      "ioc": "ANG",
+      "iso2": "ao",
+      "teamKey": 5
+    },
+    "Antigua and Barbuda": {
+      "ioc": "ANT",
+      "iso2": "ag",
+      "teamKey": 6
+    },
+    "Argentina": {
+      "ioc": "ARG",
+      "iso2": "ar",
+      "teamKey": 7
+    },
+    "Armenia": {
+      "ioc": "ARM",
+      "iso2": "am",
+      "teamKey": 8
+    },
+    "Aruba": {
+      "ioc": "ARU",
+      "iso2": "aw",
+      "teamKey": 9
+    },
+    "Australia": {
+      "ioc": "AUS",
+      "iso2": "au",
+      "teamKey": 10
+    },
+    "Austria": {
+      "ioc": "AUT",
+      "iso2": "at",
+      "teamKey": 11
+    },
+    "Azerbaijan": {
+      "ioc": "AZE",
+      "iso2": "az",
+      "teamKey": 12
+    },
+    "Bahamas": {
+      "ioc": "BAH",
+      "iso2": "bs",
+      "teamKey": 13
+    },
+    "Bangladesh": {
+      "ioc": "BAN",
+      "iso2": "bd",
+      "teamKey": 14
+    },
+    "Barbados": {
+      "ioc": "BAR",
+      "iso2": "bb",
+      "teamKey": 15
+    },
+    "Belarus": {
+      "ioc": "BLR",
+      "iso2": "by",
+      "teamKey": 16
+    },
+    "Belize": {
+      "ioc": "BIZ",
+      "iso2": "bz",
+      "teamKey": 17
+    },
+    "Benin": {
+      "ioc": "BEN",
+      "iso2": "bj",
+      "teamKey": 18
+    },
+    "Bermuda": {
+      "ioc": "BER",
+      "iso2": "bm",
+      "teamKey": 19
+    },
+    "Bhutan": {
+      "ioc": "BHU",
+      "iso2": "bt",
+      "teamKey": 20
+    },
+    "Bolivia": {
+      "ioc": "BOL",
+      "iso2": "bo",
+      "teamKey": 21
+    },
+    "Bosnia and Herzegovina": {
+      "ioc": "BIH",
+      "iso2": "ba",
+      "teamKey": 22
+    },
+    "Botswana": {
+      "ioc": "BOT",
+      "iso2": "bw",
+      "teamKey": 23
+    },
+    "Brazil": {
+      "ioc": "BRA",
+      "iso2": "br",
+      "teamKey": 24
+    },
+    "Brunei Darussalam": {
+      "ioc": "BRU",
+      "iso2": "bn",
+      "teamKey": 25
+    },
+    "Bulgaria": {
+      "ioc": "BUL",
+      "iso2": "bg",
+      "teamKey": 26
+    },
+    "Burkina Faso": {
+      "ioc": "BUR",
+      "iso2": "bf",
+      "teamKey": 27
+    },
+    "Burundi": {
+      "ioc": "BDI",
+      "iso2": "bi",
+      "teamKey": 28
+    },
+    "Cabo Verde": {
+      "ioc": "CPV",
+      "iso2": "cv",
+      "teamKey": 29
+    },
+    "Cambodia": {
+      "ioc": "CAM",
+      "iso2": "kh",
+      "teamKey": 30
+    },
+    "Canada": {
+      "ioc": "CAN",
+      "iso2": "ca",
+      "teamKey": 31
+    },
+    "Cayman Islands": {
+      "ioc": "CAY",
+      "iso2": "ky",
+      "teamKey": 32
+    },
+    "Chad": {
+      "ioc": "CHA",
+      "iso2": "td",
+      "teamKey": 33
+    },
+    "Chile": {
+      "ioc": "CHI",
+      "iso2": "cl",
+      "teamKey": 34
+    },
+    "People`s Republic of China": {
+      "ioc": "CHN",
+      "iso2": "cn",
+      "teamKey": 35
+    },
+    "Chinese Taipei": {
+      "ioc": "TPE",
+      "iso2": "15",
+      "teamKey": 36
+    },
+    "Colombia": {
+      "ioc": "COL",
+      "iso2": "co",
+      "teamKey": 37
+    },
+    "Comoros": {
+      "ioc": "COM",
+      "iso2": "km",
+      "teamKey": 38
+    },
+    "Congo": {
+      "ioc": "CGO",
+      "iso2": "cg",
+      "teamKey": 39
+    },
+    "Democratic Republic of the Congo": {
+      "ioc": "COD",
+      "iso2": "cd",
+      "teamKey": 40
+    },
+    "Cook Islands": {
+      "ioc": "COK",
+      "iso2": "ck",
+      "teamKey": 41
+    },
+    "Costa Rica": {
+      "ioc": "CRC",
+      "iso2": "cr",
+      "teamKey": 42
+    },
+    "Côte d`Ivoire": {
+      "ioc": "CIV",
+      "iso2": "ci",
+      "teamKey": 43
+    },
+    "Croatia": {
+      "ioc": "CRO",
+      "iso2": "hr",
+      "teamKey": 44
+    },
+    "Cuba": {
+      "ioc": "CUB",
+      "iso2": "cu",
+      "teamKey": 45
+    },
+    "Cyprus": {
+      "ioc": "CYP",
+      "iso2": "cy",
+      "teamKey": 46
+    },
+    "Czechia": {
+      "ioc": "CZE",
+      "iso2": "cz",
+      "teamKey": 47
+    },
+    "Denmark": {
+      "ioc": "DEN",
+      "iso2": "dk",
+      "teamKey": 48
+    },
+    "Djibouti": {
+      "ioc": "DJI",
+      "iso2": "dj",
+      "teamKey": 49
+    },
+    "Dominica": {
+      "ioc": "DMA",
+      "iso2": "dm",
+      "teamKey": 50
+    },
+    "Dominican Republic": {
+      "ioc": "DOM",
+      "iso2": "do",
+      "teamKey": 51
+    },
+    "Ecuador": {
+      "ioc": "ECU",
+      "iso2": "ec",
+      "teamKey": 52
+    },
+    "Egypt": {
+      "ioc": "EGY",
+      "iso2": "eg",
+      "teamKey": 53
+    },
+    "El Salvador": {
+      "ioc": "ESA",
+      "iso2": "sv",
+      "teamKey": 54
+    },
+    "Equatorial Guinea": {
+      "ioc": "GEQ",
+      "iso2": "gq",
+      "teamKey": 55
+    },
+    "Eritrea": {
+      "ioc": "ERI",
+      "iso2": "er",
+      "teamKey": 56
+    },
+    "Estonia": {
+      "ioc": "EST",
+      "iso2": "ee",
+      "teamKey": 57
+    },
+    "Eswatini": {
+      "ioc": "SWZ",
+      "iso2": "sz",
+      "teamKey": 58
+    },
+    "Ethiopia": {
+      "ioc": "ETH",
+      "iso2": "et",
+      "teamKey": 59
+    },
+    "Fiji": {
+      "ioc": "FIJ",
+      "iso2": "fj",
+      "teamKey": 60
+    },
+    "Finland": {
+      "ioc": "FIN",
+      "iso2": "fi",
+      "teamKey": 61
+    },
+    "France": {
+      "ioc": "FRA",
+      "iso2": "fr",
+      "teamKey": 62
+    },
+    "Gabon": {
+      "ioc": "GAB",
+      "iso2": "ga",
+      "teamKey": 63
+    },
+    "Gambia": {
+      "ioc": "GAM",
+      "iso2": "gm",
+      "teamKey": 64
+    },
+    "Georgia": {
+      "ioc": "GEO",
+      "iso2": "ge",
+      "teamKey": 65
+    },
+    "Germany": {
+      "ioc": "GER",
+      "iso2": "de",
+      "teamKey": 66
+    },
+    "Ghana": {
+      "ioc": "GHA",
+      "iso2": "gh",
+      "teamKey": 67
+    },
+    "Great Britain": {
+      "ioc": "GBR",
+      "iso2": "gb",
+      "teamKey": 68
+    },
+    "Greece": {
+      "ioc": "GRE",
+      "iso2": "gr",
+      "teamKey": 69
+    },
+    "Grenada": {
+      "ioc": "GRN",
+      "iso2": "gd",
+      "teamKey": 70
+    },
+    "Guam": {
+      "ioc": "GUM",
+      "iso2": "gu",
+      "teamKey": 71
+    },
+    "Guatemala": {
+      "ioc": "GUA",
+      "iso2": "gt",
+      "teamKey": 72
+    },
+    "Guinea-Bissau": {
+      "ioc": "GBS",
+      "iso2": "gw",
+      "teamKey": 73
+    },
+    "Guyana": {
+      "ioc": "GUY",
+      "iso2": "gy",
+      "teamKey": 74
+    },
+    "Haiti": {
+      "ioc": "HAI",
+      "iso2": "ht",
+      "teamKey": 75
+    },
+    "Honduras": {
+      "ioc": "HON",
+      "iso2": "hn",
+      "teamKey": 76
+    },
+    "Hong Kong (China)": {
+      "ioc": "HKG",
+      "iso2": "hk",
+      "teamKey": 77
+    },
+    "Hope (Refugees)": {
+      "ioc": "HPE",
+      "iso2": "10",
+      "teamKey": 78
+    },
+    "Hungary": {
+      "ioc": "HUN",
+      "iso2": "hu",
+      "teamKey": 79
+    },
+    "India": {
+      "ioc": "IND",
+      "iso2": "in",
+      "teamKey": 80
+    },
+    "Indonesia": {
+      "ioc": "INA",
+      "iso2": "id",
+      "teamKey": 81
+    },
+    "Islamic Republic of Iran": {
+      "ioc": "IRI",
+      "iso2": "ir",
+      "teamKey": 82
+    },
+    "Iraq": {
+      "ioc": "IRQ",
+      "iso2": "iq",
+      "teamKey": 83
+    },
+    "Ireland": {
+      "ioc": "IRL",
+      "iso2": "ie",
+      "teamKey": 84
+    },
+    "Israel": {
+      "ioc": "ISR",
+      "iso2": "il",
+      "teamKey": 85
+    },
+    "Italy": {
+      "ioc": "ITA",
+      "iso2": "it",
+      "teamKey": 86
+    },
+    "Japan": {
+      "ioc": "JPN",
+      "iso2": "jp",
+      "teamKey": 87
+    },
+    "Jordan": {
+      "ioc": "JOR",
+      "iso2": "jo",
+      "teamKey": 88
+    },
+    "Kazakhstan": {
+      "ioc": "KAZ",
+      "iso2": "kz",
+      "teamKey": 89
+    },
+    "Kenya": {
+      "ioc": "KEN",
+      "iso2": "ke",
+      "teamKey": 90
+    },
+    "Kiribati": {
+      "ioc": "KIR",
+      "iso2": "ki",
+      "teamKey": 91
+    },
+    "Republic of Korea": {
+      "ioc": "KOR",
+      "iso2": "kr",
+      "teamKey": 92
+    },
+    "Kosovo": {
+      "ioc": "KOS",
+      "iso2": "xk",
+      "teamKey": 93
+    },
+    "Kyrgyzstan": {
+      "ioc": "KGZ",
+      "iso2": "kg",
+      "teamKey": 94
+    },
+    "Lao People`s Democratic Republic": {
+      "ioc": "LAO",
+      "iso2": "la",
+      "teamKey": 95
+    },
+    "Latvia": {
+      "ioc": "LAT",
+      "iso2": "lv",
+      "teamKey": 96
+    },
+    "Lebanon": {
+      "ioc": "LBN",
+      "iso2": "lb",
+      "teamKey": 97
+    },
+    "Lesotho": {
+      "ioc": "LES",
+      "iso2": "ls",
+      "teamKey": 98
+    },
+    "Liberia": {
+      "ioc": "LBR",
+      "iso2": "lr",
+      "teamKey": 99
+    },
+    "Lithuania": {
+      "ioc": "LTU",
+      "iso2": "lt",
+      "teamKey": 100
+    },
+    "Luxembourg": {
+      "ioc": "LUX",
+      "iso2": "lu",
+      "teamKey": 101
+    },
+    "Madagascar": {
+      "ioc": "MAD",
+      "iso2": "mg",
+      "teamKey": 102
+    },
+    "Malawi": {
+      "ioc": "MAW",
+      "iso2": "mw",
+      "teamKey": 103
+    },
+    "Malaysia": {
+      "ioc": "MAS",
+      "iso2": "my",
+      "teamKey": 104
+    },
+    "Maldives": {
+      "ioc": "MDV",
+      "iso2": "mv",
+      "teamKey": 105
+    },
+    "Mali": {
+      "ioc": "MLI",
+      "iso2": "ml",
+      "teamKey": 106
+    },
+    "Malta": {
+      "ioc": "MLT",
+      "iso2": "mt",
+      "teamKey": 107
+    },
+    "Marshall Islands": {
+      "ioc": "MHL",
+      "iso2": "mh",
+      "teamKey": 108
+    },
+    "Mauritania": {
+      "ioc": "MTN",
+      "iso2": "mr",
+      "teamKey": 109
+    },
+    "Mauritius": {
+      "ioc": "MRI",
+      "iso2": "mu",
+      "teamKey": 110
+    },
+    "Mexico": {
+      "ioc": "MEX",
+      "iso2": "mx",
+      "teamKey": 111
+    },
+    "Federated States of Micronesia": {
+      "ioc": "FSM",
+      "iso2": "fm",
+      "teamKey": 112
+    },
+    "Republic of Moldova": {
+      "ioc": "MDA",
+      "iso2": "md",
+      "teamKey": 113
+    },
+    "Mongolia": {
+      "ioc": "MGL",
+      "iso2": "mn",
+      "teamKey": 114
+    },
+    "Montenegro": {
+      "ioc": "MNE",
+      "iso2": "me",
+      "teamKey": 115
+    },
+    "Morocco": {
+      "ioc": "MAR",
+      "iso2": "ma",
+      "teamKey": 116
+    },
+    "Mozambique": {
+      "ioc": "MOZ",
+      "iso2": "mz",
+      "teamKey": 117
+    },
+    "Myanmar": {
+      "ioc": "MYA",
+      "iso2": "mm",
+      "teamKey": 118
+    },
+    "Namibia": {
+      "ioc": "NAM",
+      "iso2": "na",
+      "teamKey": 119
+    },
+    "Nepal": {
+      "ioc": "NEP",
+      "iso2": "np",
+      "teamKey": 120
+    },
+    "Netherlands": {
+      "ioc": "NED",
+      "iso2": "nl",
+      "teamKey": 121
+    },
+    "Nicaragua": {
+      "ioc": "NCA",
+      "iso2": "ni",
+      "teamKey": 122
+    },
+    "Niger": {
+      "ioc": "NIG",
+      "iso2": "ne",
+      "teamKey": 123
+    },
+    "North Macedonia": {
+      "ioc": "MKD",
+      "iso2": "mk",
+      "teamKey": 124
+    },
+    "Norway": {
+      "ioc": "NOR",
+      "iso2": "no",
+      "teamKey": 125
+    },
+    "Oman": {
+      "ioc": "OMA",
+      "iso2": "om",
+      "teamKey": 126
+    },
+    "Pakistan": {
+      "ioc": "PAK",
+      "iso2": "pk",
+      "teamKey": 127
+    },
+    "Palestine": {
+      "ioc": "PLE",
+      "iso2": "ps",
+      "teamKey": 128
+    },
+    "Panama": {
+      "ioc": "PAN",
+      "iso2": "pa",
+      "teamKey": 129
+    },
+    "Papua New Guinea": {
+      "ioc": "PNG",
+      "iso2": "pg",
+      "teamKey": 130
+    },
+    "Paraguay": {
+      "ioc": "PAR",
+      "iso2": "py",
+      "teamKey": 131
+    },
+    "Peru": {
+      "ioc": "PER",
+      "iso2": "pe",
+      "teamKey": 132
+    },
+    "Philippines": {
+      "ioc": "PHI",
+      "iso2": "ph",
+      "teamKey": 133
+    },
+    "Poland": {
+      "ioc": "POL",
+      "iso2": "pl",
+      "teamKey": 134
+    },
+    "Portugal": {
+      "ioc": "POR",
+      "iso2": "pt",
+      "teamKey": 135
+    },
+    "Puerto Rico": {
+      "ioc": "PUR",
+      "iso2": "pr",
+      "teamKey": 136
+    },
+    "Qatar": {
+      "ioc": "QAT",
+      "iso2": "qa",
+      "teamKey": 137
+    },
+    "Romania": {
+      "ioc": "ROU",
+      "iso2": "ro",
+      "teamKey": 138
+    },
+    "Rwanda": {
+      "ioc": "RWA",
+      "iso2": "rw",
+      "teamKey": 139
+    },
+    "Saint Kitts and Nevis": {
+      "ioc": "SKN",
+      "iso2": "kn",
+      "teamKey": 140
+    },
+    "Saint Lucia": {
+      "ioc": "LCA",
+      "iso2": "lc",
+      "teamKey": 141
+    },
+    "Saint Vincent and the Grenadines": {
+      "ioc": "VIN",
+      "iso2": "vc",
+      "teamKey": 142
+    },
+    "San Marino": {
+      "ioc": "SMR",
+      "iso2": "sm",
+      "teamKey": 143
+    },
+    "São Tomé and Príncipe": {
+      "ioc": "STP",
+      "iso2": "st",
+      "teamKey": 144
+    },
+    "Saudi Arabia": {
+      "ioc": "KSA",
+      "iso2": "sa",
+      "teamKey": 145
+    },
+    "Senegal": {
+      "ioc": "SEN",
+      "iso2": "sn",
+      "teamKey": 146
+    },
+    "Serbia": {
+      "ioc": "SRB",
+      "iso2": "rs",
+      "teamKey": 147
+    },
+    "Seychelles": {
+      "ioc": "SEY",
+      "iso2": "sc",
+      "teamKey": 148
+    },
+    "Sierra Leone": {
+      "ioc": "SLE",
+      "iso2": "sl",
+      "teamKey": 149
+    },
+    "Slovakia": {
+      "ioc": "SVK",
+      "iso2": "sk",
+      "teamKey": 150
+    },
+    "Slovenia": {
+      "ioc": "SLO",
+      "iso2": "si",
+      "teamKey": 151
+    },
+    "Solomon Islands": {
+      "ioc": "SOL",
+      "iso2": "sb",
+      "teamKey": 152
+    },
+    "South Africa": {
+      "ioc": "RSA",
+      "iso2": "za",
+      "teamKey": 153
+    },
+    "South Sudan": {
+      "ioc": "SSD",
+      "iso2": "ss",
+      "teamKey": 154
+    },
+    "Spain": {
+      "ioc": "ESP",
+      "iso2": "es",
+      "teamKey": 155
+    },
+    "Sri Lanka": {
+      "ioc": "SRI",
+      "iso2": "lk",
+      "teamKey": 156
+    },
+    "Sudan": {
+      "ioc": "SUD",
+      "iso2": "sd",
+      "teamKey": 157
+    },
+    "Suriname": {
+      "ioc": "SUR",
+      "iso2": "sr",
+      "teamKey": 158
+    },
+    "Sweden": {
+      "ioc": "SWE",
+      "iso2": "se",
+      "teamKey": 159
+    },
+    "Switzerland": {
+      "ioc": "SUI",
+      "iso2": "ch",
+      "teamKey": 160
+    },
+    "Syrian Arab Republic": {
+      "ioc": "SYR",
+      "iso2": "sy",
+      "teamKey": 161
+    },
+    "Tajikistan": {
+      "ioc": "TJK",
+      "iso2": "tj",
+      "teamKey": 162
+    },
+    "United Republic of Tanzania": {
+      "ioc": "TAN",
+      "iso2": "tz",
+      "teamKey": 163
+    },
+    "Timor-Leste": {
+      "ioc": "TLS",
+      "iso2": "tl",
+      "teamKey": 164
+    },
+    "Tonga": {
+      "ioc": "TGA",
+      "iso2": "to",
+      "teamKey": 165
+    },
+    "Trinidad and Tobago": {
+      "ioc": "TTO",
+      "iso2": "tt",
+      "teamKey": 166
+    },
+    "Tunisia": {
+      "ioc": "TUN",
+      "iso2": "tn",
+      "teamKey": 167
+    },
+    "Türkiye": {
+      "ioc": "TUR",
+      "iso2": "tr",
+      "teamKey": 168
+    },
+    "Turkmenistan": {
+      "ioc": "TKM",
+      "iso2": "tm",
+      "teamKey": 169
+    },
+    "Uganda": {
+      "ioc": "UGA",
+      "iso2": "ug",
+      "teamKey": 170
+    },
+    "Ukraine": {
+      "ioc": "UKR",
+      "iso2": "ua",
+      "teamKey": 171
+    },
+    "United Arab Emirates": {
+      "ioc": "UAE",
+      "iso2": "ae",
+      "teamKey": 172
+    },
+    "United States of America": {
+      "ioc": "USA",
+      "iso2": "us",
+      "teamKey": 173
+    },
+    "Uzbekistan": {
+      "ioc": "UZB",
+      "iso2": "uz",
+      "teamKey": 174
+    },
+    "Venezuela": {
+      "ioc": "VEN",
+      "iso2": "ve",
+      "teamKey": 175
+    },
+    "Vietnam": {
+      "ioc": "VIE",
+      "iso2": "vn",
+      "teamKey": 176
+    },
+    "British Virgin Islands": {
+      "ioc": "IVB",
+      "iso2": "vg",
+      "teamKey": 177
+    },
+    "U.S. Virgin Islands": {
+      "ioc": "ISV",
+      "iso2": "vi",
+      "teamKey": 178
+    },
+    "Yemen": {
+      "ioc": "YEM",
+      "iso2": "ye",
+      "teamKey": 179
+    },
+    "Zambia": {
+      "ioc": "ZAM",
+      "iso2": "zm",
+      "teamKey": 180
+    },
+    "Zimbabwe": {
+      "ioc": "ZIM",
+      "iso2": "zw",
+      "teamKey": 181
+    }
+  }
+}

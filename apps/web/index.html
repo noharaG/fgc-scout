@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <!--
+      宣言順は charset → viewport → favicon → preconnect → フォント → title
+      で固定する(→ S-38)。差分がメタ情報の追加なのか並べ替えなのかを
+      レビューで区別できるようにするため。
+
+      canonical・og:*・twitter:*・description・theme-color・
+      apple-touch-icon・manifest は置かない。共有パスワードの内側にある
+      画面で、検索結果にも SNS のカードにも出ないため。
+    -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>FGC Scout</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

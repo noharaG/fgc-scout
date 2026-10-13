@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="tokens.css" />
+    <title>FGC Scout</title>
+  </head>
+  <body>
+    <div class="board-head">
+      <h1>チーム詳細</h1>
+      <p>
+        1チームについて、公式の実績・推定値・ピットでの申告・写真・出場試合を
+        1画面にまとめる。<strong>公式 / 推定 / 申告の3種を混ぜない</strong>のが
+        この画面の要件で、混ぜると「登れると言っていた」ことと
+        「登れた」ことの区別が消える。
+      </p>
+    </div>
+
+    <div class="board">
+      <div class="board-item">
+        <span class="board-caption">スマホ</span>
+        <div class="device">
+          <div class="shell">
+            <header class="app-head">
+              <span class="app-head-title">Poland</span>
+              <button type="button" class="app-head-menu" aria-label="メニュー">
+                ≡
+              </button>
+            </header>
+
+            <div class="shell-body">
+              <div class="main">
+                <div class="match-hero">
+                  <span class="match-hero-no">5位</span>
+                  <span class="match-hero-meta">Q31 で対戦（青）</span>
+                </div>
+
+                <h2 class="section-heading">公式の実績</h2>
+                <div class="card">
+                  <div class="card-body">
+                    <div class="metric">
+                      <span class="metric-label">Ranking Score</span>
+                      <span class="metric-value">231.4</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-label">最高スコア</span>
+                      <span class="metric-value">268</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-label">Climb Points</span>
+                      <span class="metric-value">1.78</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-label">消化した試合</span>
+                      <span class="metric-value">7</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-label">ZONE 3 到達</span>
+                      <span class="metric-value">6/7</span>
+                    </div>
+                  </div>
+                </div>
+
+                <h2 class="section-heading">推定</h2>
+                <p class="section-heading-note">
+                  7試合のスコアから最小二乗で分離した値。実測ではない
+                </p>
+                <div class="card">
+                  <div class="card-body">
+                    <div class="metric">
+                      <span class="metric-label">抑制ユニットへの貢献</span>
+                      <span>
+                        <span class="metric-value">41</span>
+                        <span class="metric-tag" data-source="estimate"
+                          >推定</span
+                        >
+                      </span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-label">クライムの期待値</span>
+                      <span>
+                        <span class="metric-value">+0.27</span>
+                        <span class="metric-tag" data-source="estimate"
+                          >推定</span
+                        >
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <h2 class="section-heading">ピットで聞いたこと</h2>
+                <p class="section-heading-note">
+                  たなか · 9/10 · <strong>申告値であって実績ではない</strong>
+                </p>
+                <div class="card">
+                  <div class="card-body">
+                    <div class="photo-row">
+                      <div class="photo-slot" data-filled>写真</div>
+                      <div class="photo-slot" data-filled>写真</div>
+                      <div class="photo-slot" data-filled>写真</div>
+                    </div>
+                    <div class="metric" style="margin-top: 10px">
+                      <span class="metric-label">1回に運べる個数</span>
+                      <span class="metric-value">12</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-label">拾い方</span>
+                      <span class="metric-value">床から吸う</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-label">入れ方</span>
+                      <span class="metric-value">直接</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-label">登れる ZONE（申告）</span>
+                      <span class="metric-value">3</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-label">クライム機構</span>
+                      <span class="metric-value">フック</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-label">パートナークライム</span>
+                      <span class="metric-value">支えられる</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-label">駆動系</span>
+                      <span class="metric-value">6輪</span>
+                    </div>
+                    <div class="official-hint">
+                      申告 ZONE 3 に対して実績 6/7。<strong>一致している</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <h2 class="section-heading">出場した試合</h2>
+                <ul class="match-list">
+                  <li class="match-item" data-mine>
+                    <span class="match-no">Q14</span>
+                    <span class="match-teams">
+                      <span class="match-side">青（Japan と対戦）</span>
+                    </span>
+                    <span class="match-score">252</span>
+                  </li>
+                  <li class="match-item">
+                    <span class="match-no">Q21</span>
+                    <span class="match-teams">
+                      <span class="match-side">赤</span>
+                    </span>
+                    <span class="match-score">266</span>
+                  </li>
+                  <li class="match-item">
+                    <span class="match-no">Q8</span>
+                    <span class="match-teams">
+                      <span class="match-side">青</span>
+                    </span>
+                    <span class="match-score">198</span>
+                  </li>
+                </ul>
+
+                <p class="stale-note">公式データ 2分前に取得</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

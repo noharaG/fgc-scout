@@ -1,0 +1,1732 @@
+/* FGC Scout 視覚の正本 — トークンと共通クラス
+ *
+ * この CSS はプロトタイプの正本であり、実装(apps/web)はここから転写する。
+ * 値を変えるときはここを変え、実装側を追随させる。逆をやらない。
+ *
+ * Section order (each appears once; append within its section):
+ * 1. tokens
+ * 2. base
+ * 3. components
+ * 4. unlayered mechanisms (focus)
+ * 5. screen width steps (widest first)
+ */
+
+/* ---------- 1. tokens ---------- */
+
+:root {
+  /* ブランド。2026 Igniting Innovation の炎と WILDFIRE のボール色に由来する。
+     赤と青はアライアンス色に予約しているため、ブランドには使わない。
+     混ざると試合表示でどちらのアライアンスか読めなくなる。 */
+  --color-brand: #c2410c; /* 白文字 5.18:1 */
+  --color-brand-hover: #9a3412; /* 白文字 7.31:1 */
+  --color-brand-surface: #fff5ed; /* ブランド寄りの淡い面 */
+
+  /* 文字3段。3段すべて白地で 4.5:1 以上(実測値をコメントに残す)。
+     最も薄い段は白地専用で、淡い面の上には載せない。 */
+  --color-ink: #1c1917; /* 17.49:1 */
+  --color-secondary-ink: #57534e; /* 7.63:1 */
+  --color-muted-ink: #78716c; /* 4.80:1 */
+
+  /* 線は太さを問わず1色。面は白・中立の淡い面・ブランド寄りの淡い面の3種。 */
+  --color-line: #e7e5e4;
+  --color-surface-soft: #fafaf9;
+
+  /* 順位の3段軸。赤はアライアンス色なので使わない。
+     3段のコントラストを揃えてある(5.02 / 5.02 / 4.80)。
+     low は注記の文字と同値だが、別名にしておけば片方だけ変えられる。 */
+  --color-rank-high: #15803d;
+  --color-rank-mid: #b45309;
+  --color-rank-low: var(--color-muted-ink);
+
+  /* アライアンス色。ルール由来の固定値であり、ブランドの変更に追随させない。
+     輝度が近く色覚多様性では区別できないため、色だけで示さず必ずラベルを添える。 */
+  --color-alliance-red: #dc2626; /* 白文字 4.83:1 */
+  --color-alliance-blue: #2563eb; /* 白文字 5.17:1 */
+
+  --color-error: #b91c1c; /* 白文字 6.47:1 */
+
+  /* 角丸は役割名だけで持つ。値の階調を名前の数値に持たせない。 */
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-tag: 6px;
+
+  /* 影は浮きの高さ3段。色は --color-ink の RGB から作る。 */
+  --shadow-card: 0 4px 18px rgb(28 25 23 / 7%);
+  --shadow-popover: 0 10px 30px rgb(28 25 23 / 18%);
+
+  /* 操作要素の高さ。上2段は現場操作のための段で、規約 D-39 の
+     40/36/32 の階段の上に足したもの(承認済みの例外に登録)。
+     試合中に走りながら片手でタップするため、業務画面の重要度階段とは
+     別の要求になる。 */
+  --control-field: 88px; /* 記録画面の主操作。指が太くても外さない */
+  --control-field-sub: 56px; /* 記録画面の副操作 */
+  --control-primary: 40px; /* 閲覧画面の標準ボタン */
+  --control-secondary: 36px;
+  --control-assist: 32px;
+}
+
+/* ---------- 2. base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  /* 基準は4宣言だけ。あとは継承させる。
+     14.5px は和文の業務密度に合わせた値で、記録画面のボタンと数値は
+     この基準からの差分として階段の上段を使う。 */
+  margin: 0;
+  font-family: "Noto Sans JP", "Noto Sans CJK JP", sans-serif;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--color-ink);
+  background: var(--color-surface-soft);
+}
+
+button,
+input,
+select,
+textarea {
+  /* この4要素だけは UA 既定のフォントを持ち、body から継承しない。 */
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ---------- 3. components ---------- */
+
+/* プロトタイプを並べて見比べるための台。実装には転写しない。 */
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.board-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.board-caption {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+}
+
+.board-head {
+  max-width: 760px;
+  margin: 24px auto 0;
+  padding: 0 20px;
+}
+
+.board-head h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.board-head p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--color-secondary-ink);
+}
+
+/* プロトタイプを PC のブラウザで見るための枠。実装には転写しない。
+   実機では画面いっぱいになる。 */
+.device {
+  width: 390px;
+  height: 844px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: 28px;
+  box-shadow: var(--shadow-popover);
+}
+
+.device-label {
+  width: 390px;
+  margin: 0 auto;
+  font-size: 12px;
+  color: var(--color-muted-ink);
+}
+
+/* 画面骨格。外殻を固定高にしてページ本体をスクロールさせない。 */
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+
+.shell-body {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+/* 記録画面のヘッダ。誰のどの試合を記録しているかを常に出す。
+   取り違えたまま1試合ぶん記録する事故が最も痛い。 */
+.record-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.record-head-match {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.record-head-team {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.record-head-team-name {
+  font-size: 15px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.record-head-scout {
+  font-size: 12px;
+  color: var(--color-muted-ink);
+}
+
+/* アライアンスのラベル。色だけで示さず必ず文字を添える。 */
+.alliance-tag {
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  border-radius: var(--radius-tag);
+}
+
+.alliance-tag[data-alliance="red"] {
+  background: var(--color-alliance-red);
+}
+
+.alliance-tag[data-alliance="blue"] {
+  background: var(--color-alliance-blue);
+}
+
+/* 経路トグル。ロボットは試合中に経路を変えるので、切り替えを残す。 */
+.route-toggle {
+  display: flex;
+  gap: 0;
+  margin: 12px 16px 0;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-control);
+  overflow: hidden;
+}
+
+.route-toggle button {
+  flex: 1;
+  height: var(--control-secondary);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+  background: white;
+  border: 0;
+}
+
+.route-toggle button[aria-pressed="true"] {
+  color: white;
+  background: var(--color-brand);
+}
+
+/* 現場操作の主ボタン。1タップで「サイクル1回」と「搬送量」を同時に記録する。
+   量を別入力にすると試合中に2タップ要り、押し漏らしが出る。 */
+.field-buttons {
+  display: flex;
+  gap: 10px;
+  padding: 12px 16px 0;
+}
+
+.field-button {
+  flex: 1;
+  min-width: 0;
+  height: var(--control-field);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: white;
+  background: var(--color-brand);
+  border: 0;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.field-button:active {
+  background: var(--color-brand-hover);
+}
+
+.field-button-label {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.field-button-hint {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.field-button-count {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* 副操作。消火器への投入は Global 点なので、味方でも相手でも記録する。 */
+.field-sub {
+  display: flex;
+  gap: 10px;
+  padding: 10px 16px 0;
+}
+
+.field-sub button {
+  flex: 1;
+  min-width: 0;
+  height: var(--control-field-sub);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-brand-hover);
+  background: var(--color-brand-surface);
+  border: 1.5px solid var(--color-brand);
+  border-radius: var(--radius-control);
+}
+
+.field-sub button.is-undo {
+  color: var(--color-secondary-ink);
+  background: white;
+  border-color: var(--color-line);
+  flex: 0 0 96px;
+}
+
+/* 集計の表示。入力が入ったことを数字で返す。iOS は振動が使えないため、
+   音と数字の変化だけが入力の確認手段になる。 */
+.tally {
+  margin: 14px 16px 0;
+  padding: 12px 14px;
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+.tally-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tally-label {
+  font-size: 12px;
+  color: var(--color-secondary-ink);
+}
+
+.tally-value {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.tally-unit {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+}
+
+.tally-note {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--color-muted-ink);
+}
+
+/* 直近の記録。誤タップに気づく手段。取り消しの対象が何かを見せる。 */
+.recent {
+  margin: 12px 16px 16px;
+}
+
+.recent-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+}
+
+.recent-list {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+  overflow: hidden;
+}
+
+.recent-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  background: white;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.recent-list li:last-child {
+  border-bottom: 0;
+}
+
+.recent-time {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted-ink);
+}
+
+/* 下部のページ切替。3ページに割ることで1画面のボタンを6個以内に保つ。 */
+.page-tabs {
+  display: flex;
+  border-top: 1px solid var(--color-line);
+  background: white;
+}
+
+.page-tabs button {
+  flex: 1;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-muted-ink);
+  background: white;
+  border: 0;
+  border-top: 3px solid transparent;
+}
+
+.page-tabs button[aria-current="page"] {
+  color: var(--color-brand-hover);
+  border-top-color: var(--color-brand);
+}
+
+.page-tabs-badge {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* クライムの段階ボタン。着手→掛かり→登り切りを順に押す。
+   押した時刻を右に出すのは、押し忘れと二重押しを現場で気づかせるため。 */
+.step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 16px 0;
+}
+
+.step-button {
+  height: var(--control-field-sub);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  color: white;
+  background: var(--color-brand);
+  border: 0;
+  border-radius: var(--radius-control);
+}
+
+.step-button:disabled {
+  color: var(--color-muted-ink);
+  background: white;
+  border: 1.5px solid var(--color-line);
+  cursor: not-allowed;
+}
+
+.step-button[data-done] {
+  color: var(--color-rank-high);
+  background: white;
+  border: 1.5px solid var(--color-rank-high);
+}
+
+.step-index {
+  flex: 0 0 22px;
+  font-size: 13px;
+  font-weight: 800;
+  opacity: 0.85;
+}
+
+.step-label {
+  flex: 1;
+  min-width: 0;
+}
+
+.step-time {
+  font-size: 14px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* やり直しは G15 由来の項目。ZONE1 から登り直すたびに1回数える。
+   これが「上手いか下手か」の本命指標なので、押しやすい位置に単独で置く。 */
+.retry-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 16px 0;
+  padding: 10px 14px;
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+.retry-row-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.retry-row-label {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.retry-row-note {
+  font-size: 11px;
+  color: var(--color-muted-ink);
+}
+
+.retry-count {
+  font-size: 26px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.retry-row button {
+  height: var(--control-secondary);
+  min-width: calc(2em + 1.5rem);
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  background: var(--color-brand);
+  border: 0;
+  border-radius: var(--radius-control);
+}
+
+/* 節の見出しと補足。現場で迷ったときにルールの根拠が読めるようにする。 */
+.field-section {
+  margin: 16px 16px 0;
+}
+
+.field-section-title {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.field-section-note {
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--color-muted-ink);
+}
+
+/* 択一の選択。到達 ZONE とカードに使う。 */
+.segment {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.segment button {
+  flex: 1;
+  min-width: 0;
+  height: var(--control-field-sub);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+  background: white;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.segment button[aria-pressed="true"] {
+  color: white;
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
+.segment.is-wrap {
+  flex-wrap: wrap;
+}
+
+.segment.is-wrap button {
+  flex: 0 0 calc(50% - 3px);
+  height: var(--control-primary);
+  font-size: 13px;
+}
+
+/* 数が半端な択一。半分ずつに割ると 5つが 2+2+1 になって読みにくいので、
+   入るだけ横に並べて、入らなくなった分だけ折り返す。 */
+.segment.is-dense {
+  flex-wrap: wrap;
+}
+
+.segment.is-dense button {
+  flex: 1 1 auto;
+  min-width: 84px;
+  height: var(--control-primary);
+  font-size: 13px;
+}
+
+/* 複数選択のトグル。異常はどれも同時に起きうる。 */
+.toggle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.toggle-list button {
+  height: var(--control-field-sub);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  color: var(--color-secondary-ink);
+  background: white;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.toggle-list button[aria-pressed="true"] {
+  color: white;
+  background: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.toggle-mark {
+  flex: 0 0 20px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.memo {
+  width: 100%;
+  min-height: 76px;
+  margin-top: 8px;
+  padding: 10px 12px;
+  font-weight: 400;
+  color: var(--color-ink);
+  background: white;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-control);
+  resize: vertical;
+}
+
+/* 保存の帯。送信状態を必ず添える。「保存した」と「送れた」は別物で、
+   区別せずに出すと圏外で書いた記録が消えたことに気づけない。 */
+.save-bar {
+  padding: 12px 16px 16px;
+}
+
+.save-bar button {
+  width: 100%;
+  height: var(--control-field-sub);
+  font-size: 17px;
+  font-weight: 800;
+  color: white;
+  background: var(--color-rank-high);
+  border: 0;
+  border-radius: var(--radius-control);
+}
+
+.sync-note {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--color-secondary-ink);
+  text-align: center;
+}
+
+/* PC 幅を見るための枠。実装には転写しない。 */
+.desktop {
+  width: 1180px;
+  height: 800px;
+  display: flex;
+  overflow: hidden;
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+  box-shadow: var(--shadow-popover);
+}
+
+/* 画面骨格。外殻を固定高にし、本文列だけが内部スクロールする。
+   ヘッダとサイドバーを常に画面内へ留めるため。 */
+.nav {
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 12px;
+  background: var(--color-surface-soft);
+  border-right: 1px solid var(--color-line);
+}
+
+.nav-brand {
+  padding: 0 8px 12px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.nav a {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+  text-decoration: none;
+  border-radius: var(--radius-control);
+}
+
+.nav a[aria-current="page"] {
+  color: white;
+  background: var(--color-brand);
+}
+
+.app-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  height: 51px;
+  flex: 0 0 51px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.app-head-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.app-head-menu {
+  width: var(--control-assist);
+  height: var(--control-assist);
+  font-size: 18px;
+  color: var(--color-secondary-ink);
+  background: white;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.main {
+  padding: 16px;
+}
+
+/* 次の試合。この画面で最初に読むものなので、他のどれよりも大きく出す。 */
+.match-hero {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.match-hero-no {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.match-hero-meta {
+  font-size: 13px;
+  color: var(--color-secondary-ink);
+}
+
+/* 予測。数字だけ出して当たった外れたの話にしないため、内訳を必ず添える。 */
+.predict {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.predict-side {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+.predict-side[data-alliance="red"] {
+  border-color: var(--color-alliance-red);
+}
+
+.predict-side[data-alliance="blue"] {
+  border-color: var(--color-alliance-blue);
+}
+
+.predict-side-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+}
+
+.predict-side-value {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.predict-side-unit {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+}
+
+.predict-breakdown {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 11px;
+  color: var(--color-muted-ink);
+}
+
+.predict-breakdown li {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+/* 節の見出し。味方と相手を分ける唯一の手がかりなので文字で書く。 */
+.section-heading {
+  margin: 20px 0 8px;
+  font-size: 17.5px;
+  font-weight: 800;
+  line-height: 28px;
+}
+
+.section-heading-note {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--color-muted-ink);
+}
+
+/* チームカード列。折り返し点をカード自身の最小幅に持たせるので、
+   サイドバーの有無で実効幅が変わってもコードが同じまま正しく折り返る。 */
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.card {
+  min-width: 0;
+  max-width: 100%;
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.card-body {
+  padding: 16px 18px;
+}
+
+.team-card {
+  flex: 1 1 268px;
+}
+
+.team-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.team-card-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 16.5px;
+  font-weight: 800;
+  line-height: 26px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.team-card-rank {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+}
+
+/* 指標行。推定値と公式値を同じ行に並べ、どちらなのかを必ず添える。
+   区別を落とすと、推定を実測として読まれる。 */
+.metric {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.metric:last-child {
+  border-bottom: 0;
+}
+
+.metric-label {
+  font-size: 12px;
+  color: var(--color-secondary-ink);
+}
+
+.metric-value {
+  font-size: 16px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-tag {
+  margin-left: 4px;
+  padding: 1px 5px;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: var(--radius-tag);
+}
+
+.metric-tag[data-source="official"] {
+  color: white;
+  background: var(--color-rank-high);
+}
+
+.metric-tag[data-source="estimate"] {
+  color: var(--color-secondary-ink);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-line);
+}
+
+/* 順位の3段軸。色だけで示さず、必ず数値か語を併記する。 */
+.rank-mark {
+  flex: 0 0 auto;
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  border-radius: var(--radius-tag);
+}
+
+.rank-mark[data-rank="high"] {
+  background: var(--color-rank-high);
+}
+
+.rank-mark[data-rank="mid"] {
+  background: var(--color-rank-mid);
+}
+
+.rank-mark[data-rank="low"] {
+  background: var(--color-rank-low);
+}
+
+/* この試合の方針。得点式から導ける話だけを書き、精神論を書かない。 */
+.plan {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plan li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.plan li:last-child {
+  border-bottom: 0;
+}
+
+.plan-title {
+  font-size: 14.5px;
+  font-weight: 800;
+}
+
+.plan-why {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--color-secondary-ink);
+}
+
+.plan-points {
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-brand-hover);
+}
+
+/* 確度。試合数と分離できていない項目を出す。出さないと推定が実測に見える。 */
+.confidence {
+  margin-top: 16px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--color-secondary-ink);
+  background: var(--color-brand-surface);
+  border-radius: var(--radius-card);
+}
+
+.confidence strong {
+  font-weight: 800;
+}
+
+.stale-note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--color-muted-ink);
+}
+
+/* 訪問優先リスト。190チームは回れないので、順番そのものが機能になる。 */
+.visit-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.visit-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+.visit-item[data-done] {
+  background: var(--color-surface-soft);
+}
+
+.visit-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.visit-name {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.visit-meta {
+  font-size: 12px;
+  color: var(--color-secondary-ink);
+}
+
+.visit-state {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-tag);
+  color: white;
+  background: var(--color-brand);
+}
+
+.visit-item[data-done] .visit-state {
+  background: var(--color-rank-high);
+}
+
+.visit-go {
+  height: var(--control-primary);
+  padding: 0 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  background: var(--color-brand);
+  border: 0;
+  border-radius: var(--radius-control);
+}
+
+/* 聞き取りの1問。日本語のラベルの下に英語の質問文を置く。
+   相手は190カ国から来ており共通語は英語で、聞き方が分からないと
+   その項目は空欄のまま戻ってくる。 */
+.ask {
+  margin: 18px 16px 0;
+}
+
+.ask-label {
+  font-size: 14.5px;
+  font-weight: 800;
+}
+
+.ask-en {
+  margin-top: 2px;
+  font-size: 12.5px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-brand-hover);
+}
+
+.ask-why {
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--color-muted-ink);
+}
+
+/* 公式データの実績を申告の隣に出す。食い違いが見えないと、
+   申告をそのまま実績として読んでしまう。 */
+.official-hint {
+  margin-top: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  color: var(--color-secondary-ink);
+  background: var(--color-surface-soft);
+  border-left: 3px solid var(--color-rank-high);
+  border-radius: var(--radius-tag);
+}
+
+/* 個数の入力。ピットで立ったまま打つので、キーパッドの前に増減も置く。 */
+.num-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.num-field input {
+  flex: 1;
+  min-width: 0;
+  height: var(--control-field-sub);
+  padding: 0 14px;
+  font-size: 24px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: var(--color-ink);
+  background: white;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.num-field button {
+  flex: 0 0 56px;
+  height: var(--control-field-sub);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-brand-hover);
+  background: var(--color-brand-surface);
+  border: 1.5px solid var(--color-brand);
+  border-radius: var(--radius-control);
+}
+
+.num-unit {
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+}
+
+/* 写真。ピットでその場で撮る。既に撮った枚数が見えないと重複して撮る。 */
+.photo-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.photo-slot {
+  flex: 1 1 0;
+  min-width: 0;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--color-muted-ink);
+  background: var(--color-surface-soft);
+  border: 1.5px dashed var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.photo-slot[data-filled] {
+  color: var(--color-secondary-ink);
+  background: var(--color-brand-surface);
+  border-style: solid;
+  border-color: var(--color-brand);
+}
+
+/* 表。190チームの一覧は列を畳むより横スクロールさせたほうが読める。
+   横スクロールはこのラッパーの内側に閉じ込め、ページ本体には出さない。 */
+.table-wrap {
+  margin-top: 12px;
+  overflow-x: auto;
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+table.data {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+table.data th {
+  padding: 12px 18px;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: left;
+  white-space: nowrap;
+  color: var(--color-secondary-ink);
+  background: var(--color-surface-soft);
+}
+
+table.data td {
+  padding: 14px 18px;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--color-line);
+}
+
+table.data tr:last-child td {
+  border-bottom: 0;
+}
+
+table.data th:first-child,
+table.data td:first-child {
+  padding-left: 20px;
+}
+
+table.data th:last-child,
+table.data td:last-child {
+  padding-right: 20px;
+}
+
+/* 自チームの行。190行の中から自分を探す作業をなくす。 */
+table.data tbody tr[data-mine] td {
+  background: var(--color-brand-surface);
+  font-weight: 700;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.search {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  height: var(--control-secondary);
+  padding: 0 12px;
+  font-weight: 400;
+  color: var(--color-ink);
+  background: white;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.empty {
+  padding: 48px 16px;
+  font-size: 13px;
+  color: var(--color-muted-ink);
+  text-align: center;
+}
+
+/* 試合一覧。自分が出る試合だけ枠と地の色を変える。 */
+.match-list {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.match-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+.match-item[data-mine] {
+  background: var(--color-brand-surface);
+  border-color: var(--color-brand);
+}
+
+.match-no {
+  flex: 0 0 44px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.match-teams {
+  flex: 1;
+  min-width: 0;
+  font-size: 12.5px;
+  color: var(--color-secondary-ink);
+}
+
+.match-side {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.match-score {
+  flex: 0 0 auto;
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.match-score-pending {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-muted-ink);
+}
+
+/* ログイン。共有パスワード1つだけで入る。アカウントは持たない。 */
+.login {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 24px;
+}
+
+.login-brand {
+  font-size: 26px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.login-note {
+  font-size: 12.5px;
+  color: var(--color-secondary-ink);
+  text-align: center;
+}
+
+.login input {
+  height: var(--control-field-sub);
+  padding: 0 14px;
+  font-size: 17px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--color-ink);
+  background: white;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.login button {
+  height: var(--control-field-sub);
+  font-size: 17px;
+  font-weight: 800;
+  color: white;
+  background: var(--color-brand);
+  border: 0;
+  border-radius: var(--radius-control);
+}
+
+/* 質問項目の管理。管理者だけが開く画面に閉じたクラス。 */
+.admin-list {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* 質問カード。1枚を開くとその場で編集する。別画面へ飛ばすと、並び順の
+   どこを直しているのかが見えなくなり、前後との言い回しを揃えられない。 */
+.q-card {
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+/* 開いている1枚。枠の色で、いまどれを直しているかを示す。 */
+.q-card[data-open] {
+  border-color: var(--color-brand);
+  box-shadow: var(--shadow-card);
+}
+
+.q-card[data-open] .q-head {
+  border-bottom: 1px solid var(--color-line);
+}
+
+/* 無効にした項目。削除ではないので残る。過去の回答を読むのに定義が要る。 */
+.q-card[data-disabled] {
+  background: var(--color-surface-soft);
+}
+
+.q-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+/* カードを開く操作。押せる範囲を見出し全体に広げる。 */
+.q-head-main {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  background: none;
+  border: 0;
+}
+
+.q-head-label {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+.q-card[data-disabled] .q-head-label {
+  color: var(--color-muted-ink);
+}
+
+.q-head-en {
+  display: block;
+  font-size: 11.5px;
+  font-style: italic;
+  color: var(--color-muted-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.q-body {
+  padding: 2px 12px 12px;
+}
+
+/* 自動保存の状態。押して保存する画面ではないので、送れたのか送れていないのかを
+   常に文字で出す。色だけで示すと、色が読めない人に状態が伝わらない。 */
+.q-state {
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-muted-ink);
+}
+
+.q-state[data-state="saving"] {
+  color: var(--color-secondary-ink);
+}
+
+.q-state[data-state="saved"] {
+  color: var(--color-rank-high);
+}
+
+.q-state[data-state="error"] {
+  color: var(--color-error);
+}
+
+.q-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-line);
+}
+
+/* 単独で入り切りする操作。択一の .segment とは別物で、押されている状態
+   そのものが値になる。 */
+.q-switch {
+  height: var(--control-secondary);
+  padding: 0 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+  background: white;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.q-switch[aria-pressed="true"] {
+  color: white;
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+}
+
+/* 無効にする操作だけは、押された状態を注意の色で出す。押すとピット記録の
+   画面からこの項目が消える。 */
+.q-switch[data-role="disable"][aria-pressed="true"] {
+  background: var(--color-rank-mid);
+  border-color: var(--color-rank-mid);
+}
+
+/* 取り消せない操作。押した先が戻せないことを色で予告する。押すと、
+   もう一度確かめる操作に変わる。 */
+.q-switch[data-role="delete"] {
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+/* 確かめの段。ここを押すと本当に消える。 */
+.q-switch[data-role="delete-confirm"] {
+  color: white;
+  background: var(--color-error);
+  border-color: var(--color-error);
+}
+
+/* 推定式が読む項目は無効にできない。押せないことを見た目で示したうえで、
+   理由は隣の .locked-note に文字で置く。 */
+.q-switch:disabled {
+  opacity: 0.5;
+}
+
+.admin-tag {
+  flex: 0 0 auto;
+  padding: 2px 7px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--color-secondary-ink);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-tag);
+}
+
+/* 推定式が読む項目。消せないことを名前の隣で宣言する。 */
+.admin-tag[data-locked] {
+  color: white;
+  background: var(--color-rank-mid);
+  border-color: var(--color-rank-mid);
+}
+
+.admin-order {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-order button {
+  width: var(--control-assist);
+  height: 15px;
+  font-size: 10px;
+  line-height: 1;
+  color: var(--color-secondary-ink);
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+}
+
+.admin-add {
+  width: 100%;
+  height: var(--control-primary);
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  color: white;
+  background: var(--color-brand);
+  border: 0;
+  border-radius: var(--radius-control);
+}
+
+/* カードの中で使う小さいほう。幅いっぱいに引き伸ばさない。 */
+.admin-add.is-inline {
+  width: auto;
+  height: var(--control-secondary);
+  padding: 0 14px;
+  font-size: 12.5px;
+  color: var(--color-brand-hover);
+  background: var(--color-brand-surface);
+  border: 1.5px solid var(--color-brand);
+}
+
+.admin-group {
+  margin: 18px 0 0;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--color-secondary-ink);
+}
+
+/* グループの見出し。名前はその場で直せる欄にする。表示名を画面が持つと
+   管理者が直せず、足したグループに名前を付けられない。 */
+.group-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.group-head .admin-group {
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.group-head .text-input {
+  margin-top: 0;
+  flex: 0 1 256px;
+}
+
+.group-head button[aria-label] {
+  flex: 0 0 auto;
+  width: var(--control-assist);
+  height: var(--control-assist);
+  font-size: 11px;
+  color: var(--color-secondary-ink);
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+/* 項目が残っているグループは消せない。押せないことを見た目で示す。 */
+.group-del {
+  flex: 0 0 auto;
+  height: var(--control-assist);
+  padding: 0 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--color-error);
+  background: white;
+  border: 1.5px solid var(--color-error);
+  border-radius: var(--radius-control);
+}
+
+.group-del:disabled {
+  color: var(--color-muted-ink);
+  border-color: var(--color-line);
+  opacity: 0.5;
+}
+
+.group-empty {
+  margin-top: 8px;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--color-secondary-ink);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.form-row {
+  margin-top: 14px;
+}
+
+.form-label {
+  font-size: 12.5px;
+  font-weight: 800;
+}
+
+.form-help {
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--color-muted-ink);
+}
+
+.text-input {
+  width: 100%;
+  height: var(--control-secondary);
+  margin-top: 6px;
+  padding: 0 12px;
+  font-weight: 400;
+  color: var(--color-ink);
+  background: white;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+/* 選択肢の編集。識別子を左に出して、ラベルを変えても回答が壊れないことを
+   編集者に見せる。ラベルを識別子として使うと過去の回答が読めなくなる。 */
+.choice-list {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.choice-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.choice-row .text-input {
+  margin-top: 0;
+}
+
+/* 使わないことにした選択肢。消さずに打ち消して残す。選択肢を消すと、
+   その選択肢を選んで答えたピット記録が何を指していたか読めなくなる。
+   押し間違えたときに戻せる形でもある。 */
+.choice-row[data-disabled] .text-input {
+  color: var(--color-muted-ink);
+  background: var(--color-surface-soft);
+  text-decoration: line-through;
+}
+
+.choice-id {
+  flex: 0 0 104px;
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--color-muted-ink);
+}
+
+.choice-del {
+  flex: 0 0 auto;
+  width: var(--control-assist);
+  height: var(--control-assist);
+  font-size: 14px;
+  color: var(--color-error);
+  background: white;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-control);
+}
+
+.locked-note {
+  margin-top: 10px;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--color-secondary-ink);
+  background: var(--color-surface-soft);
+  border-left: 3px solid var(--color-rank-mid);
+  border-radius: var(--radius-tag);
+}
+
+/* ---------- 4. unlayered mechanisms ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}

@@ -1,0 +1,11 @@
+{
+  // Node で動く側。ビルドに乗らない道具を置く(→ S-35)。
+  // @types/node はここでだけ有効にする。Worker 側へ漏らすと、
+  // 実行環境に無い API が型の上では使えてしまう。
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["es2023"],
+    "types": ["node"]
+  },
+  "include": ["scripts"]
+}

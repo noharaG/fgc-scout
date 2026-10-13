@@ -1,0 +1,27 @@
+{
+  // 型の厳格設定の集約先(→ S-23)。各パッケージはこれを extends し、
+  // 環境差(lib / types / jsx / paths)と include だけを足す。
+  // ここにある項目を葉で再宣言しない。再宣言すると base を変えても葉が勝つ。
+  // noUncheckedIndexedAccess と exactOptionalPropertyTypes は
+  // 型エラーの回避のために無効化しない(→ A-44)。
+  "compilerOptions": {
+    "target": "es2023",
+    "module": "preserve",
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "erasableSyntaxOnly": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noPropertyAccessFromIndexSignature": true
+  }
+}
